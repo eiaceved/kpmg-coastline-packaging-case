@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Coastline Packaging Mock Case</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+/* Layout: one reading column (max 820px) under a sticky step rail. Every step runs the same loop:
+   interviewer prompt -> your move -> reveal a strong answer. Exhibits sit inside the column like workpapers. */
+:root{
+  --bg:#f2f5f6; --surface:#ffffff; --surface-2:#e8eef0; --fg:#13202a; --fg-2:#44525d; --muted:#6c7a84; --line:#d4dce0;
+  --accent:#0d6b61; --accent-ink:#0a5a51; --accent-soft:#dbeeea; --on-accent:#ffffff;
+  --s1:#2a78d6; --s2:#eb6834; --grid:#e2e8ea; --axis:#b6c1c7;
+  --good:#0ca30c; --good-ink:#006300; --crit:#d03b3b; --crit-ink:#ad2828;
+  --h1:#e6f0fc; --h2:#b7d3f6; --h3:#6da7ec; --h4:#2a78d6; --h5:#104281;
+  --dot:#eb6834; --dot-ink:#111111; --tip-bg:#13202a; --tip-fg:#ffffff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+    --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+    --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+    --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+    --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+    --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1215; --surface:#151c20; --surface-2:#1b252a; --fg:#e5ecef; --fg-2:#a8b4bb; --muted:#7c8992; --line:#29343a;
+  --accent:#4cc2b1; --accent-ink:#72d4c6; --accent-soft:#11302c; --on-accent:#06201c;
+  --s1:#3987e5; --s2:#d95926; --grid:#222c32; --axis:#3a464d;
+  --good:#0ca30c; --good-ink:#3dc43d; --crit:#d03b3b; --crit-ink:#ff8484;
+  --h1:#1a2531; --h2:#1c3c63; --h3:#22599b; --h4:#3987e5; --h5:#86b6ef;
+  --dot:#f07a45; --dot-ink:#111111; --tip-bg:#e5ecef; --tip-fg:#0d1215;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-stretch:86%;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0 0 .8em}
+a{color:var(--accent-ink)}
+b,strong{font-weight:700}
+.eyebrow,.lbl,.who{font:500 11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* rail */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.rail-in{max-width:820px;margin:0 auto;padding:8px 20px;display:flex;gap:10px;align-items:center}
+.chips{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;padding-block:2px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{font:500 12px var(--mono);padding:5px 9px;border-radius:999px;color:var(--fg-2);white-space:nowrap;text-decoration:none}
+.chips a:hover{background:var(--surface-2)}
+.chips a.on{background:var(--fg);color:var(--bg)}
+.speed{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);flex:none}
+.speed select{font:500 12px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:3px 4px}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .eyebrow{color:var(--accent-ink);margin-bottom:14px}
+.hero h1{font-size:clamp(40px,8vw,64px);line-height:1;font-weight:800;font-stretch:80%}
+.lede{font-size:21px;line-height:1.5;color:var(--fg-2);max-width:36em;margin-top:18px}
+.how{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.how li{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:15px;line-height:1.4;counter-increment:how}
+.how li::before{content:counter(how);display:block;font:600 12px var(--mono);color:var(--accent-ink);margin-bottom:4px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+/* steps */
+.step{padding-block:52px;border-top:1px solid var(--line);scroll-margin-top:56px}
+.sh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.idx{font:600 13px var(--mono);color:var(--accent-ink)}
+.sh h2{font-size:clamp(26px,4.4vw,32px);line-height:1.15;font-weight:750}
+.sh .listen{margin-left:auto}
+.sub{color:var(--fg-2);margin-top:8px;max-width:40em}
+
+.btn{font:600 14px/1.2 var(--body);border-radius:8px;padding:9px 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:inline-flex;align-items:center;gap:7px;text-decoration:none}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.small{font-size:13px;padding:6px 10px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+
+.iv{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:22px}
+.who{color:var(--muted);margin-bottom:8px}
+.iv p{font-size:19px;line-height:1.55}
+.iv p:last-child{margin-bottom:0}
+
+.move{display:flex;gap:12px 16px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-block:14px;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+.move .lbl{color:var(--accent-ink);flex:none}
+.move p{margin:0;flex:1 1 260px;min-width:0;font-weight:600}
+.move .acts{display:flex;gap:8px;flex-wrap:wrap}
+
+.ans{background:var(--accent-soft);border-radius:var(--r);padding:20px 22px;margin-top:14px}
+.ans .who{color:var(--accent-ink)}
+.ans h3{font-size:19px;margin:18px 0 8px;font-weight:700}
+.ans h3:first-of-type{margin-top:4px}
+.ans ul{margin:0 0 .6em;padding-left:1.2em}
+.ans li{margin-bottom:.35em}
+.script{font-size:18px;line-height:1.6}
+.script p{margin-bottom:.7em}
+.note{font-size:15px;color:var(--fg-2)}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.facts div{background:var(--surface);padding:12px 14px;min-width:0}
+.facts .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:4px}
+.facts .d{font-size:13px;color:var(--fg-2);line-height:1.35;margin-top:2px}
+
+/* primer */
+.def{font:600 clamp(21px,3.4vw,26px)/1.35 var(--display);font-stretch:92%;margin-top:22px;max-width:30em}
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;min-width:0}
+.panel h3{font-size:19px;font-weight:700}
+.panel .tag{font:500 11px var(--mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 8px}
+.panel ul{margin:0;padding-left:1.1em;font-size:16px}
+.panel li{margin-bottom:.3em}
+.cycle{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.cycle li{position:relative;background:var(--surface-2);border-radius:8px;padding:12px 12px 10px;min-width:0}
+.cycle li b{display:block;font:700 17px var(--display);font-stretch:88%}
+.cycle li span{font-size:14px;color:var(--fg-2);line-height:1.35;display:block;margin-top:2px}
+.cycle li:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:12px;height:12px;border-top:2px solid var(--muted);border-right:2px solid var(--muted);transform:translateY(-50%) rotate(45deg)}
+.cycle-note{font:500 12px var(--mono);color:var(--muted);margin-top:10px}
+.vocab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.term b{display:block;font:700 16px var(--display);font-stretch:90%;margin-bottom:3px}
+.term p{margin:0;font-size:15px;line-height:1.45;color:var(--fg-2)}
+.h-sec{font:500 11px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:30px}
+
+/* qa list */
+.qa{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.qa li{background:var(--surface);border-radius:8px;padding:12px 14px}
+.qa .q{font-weight:700}
+.qa .a{color:var(--fg-2);margin-top:2px}
+.qa .a::before{content:"Interviewer: ";font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* framework tree */
+.tree{margin-top:6px}
+.root{background:var(--fg);color:var(--bg);border-radius:8px;padding:12px 16px;font:700 18px/1.3 var(--display);font-stretch:90%;text-align:center;position:relative}
+.root::after{content:"";position:absolute;left:50%;bottom:-16px;width:2px;height:16px;background:var(--muted)}
+.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:14px;border-top:2px solid var(--muted)}
+.branch{background:var(--surface);border-radius:8px;padding:12px 13px;min-width:0}
+.branch .n{font:600 12px var(--mono);color:var(--accent-ink)}
+.branch b{display:block;font:700 16px/1.25 var(--display);font-stretch:90%;margin:2px 0 6px}
+.branch ul{margin:0;padding-left:1.05em;font-size:14.5px;line-height:1.4}
+.branch li{margin-bottom:.3em}
+
+/* exhibits */
+.ex{margin:22px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 14px}
+.ex-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap}
+.ex-t{font:700 18px var(--display);font-stretch:88%}
+.ex-ref{font:500 12px var(--mono);color:var(--muted)}
+.ex-s{font-size:14px;color:var(--fg-2);margin-top:2px}
+.ex figcaption,.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:12px}
+.multiples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mini{border:1px solid var(--grid);border-radius:8px;padding:10px 10px 4px;min-width:0}
+.mini .nm{font-weight:700;font-size:14.5px;line-height:1.25;min-height:2.5em}
+.mini .ch{font:500 12px var(--mono);color:var(--fg-2)}
+.mini svg{display:block;width:100%;height:auto;margin-top:4px}
+.tblwrap{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{font:500 11px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+
+.hbar{margin-top:16px}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:4px 14px;align-items:center;padding-block:9px;border-bottom:1px solid var(--grid)}
+.hrow:last-of-type{border-bottom:0}
+.hlab b{display:block;font-size:15px;line-height:1.3}
+.hlab span{font-size:13px;color:var(--fg-2);line-height:1.3;display:block}
+.track{position:relative;height:26px}
+.bar{position:absolute;left:0;top:5px;height:16px;border-radius:0 4px 4px 0;background:var(--s1);min-width:2px}
+.bar.b2{background:var(--s2)}
+.bval{position:absolute;top:2px;font:600 13px var(--mono);color:var(--fg);white-space:nowrap;padding-left:6px}
+.tol{position:absolute;top:-4px;bottom:-4px;width:0;border-left:1.5px solid var(--fg-2)}
+.axis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:14px}
+.ticks{position:relative;height:18px;font:500 11px var(--mono);color:var(--muted);border-top:1px solid var(--axis)}
+.ticks span{position:absolute;top:3px;transform:translateX(-50%)}
+.ticks span:first-child{transform:none}
+.ticks span:last-child{transform:translateX(-100%)}
+.status{font:600 12px var(--mono);display:inline-flex;gap:5px;align-items:center;margin-top:3px}
+.status.bad{color:var(--crit-ink)} .status.ok{color:var(--good-ink)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--fg-2);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tolnote{font:500 12px var(--mono);color:var(--fg-2);margin-top:8px}
+
+/* given table + calc steps */
+.given{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-top:16px}
+.given div{background:var(--surface);padding:11px 13px;min-width:0}
+.given .k{font-size:13px;color:var(--fg-2);line-height:1.3}
+.given .v{font:700 20px/1.2 var(--display);font-stretch:88%;margin-top:3px}
+.calc{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.calc li{background:var(--surface);border-radius:8px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 14px;align-items:center}
+.calc .t{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);grid-column:1/-1}
+.calc .f{font-size:16px;min-width:0}
+.calc .r{font:700 20px var(--display);font-stretch:88%;text-align:right;white-space:nowrap}
+.stepper .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chipset span{font:500 12px var(--mono);background:var(--surface);border-radius:6px;padding:4px 8px;color:var(--fg-2)}
+.chipset b{color:var(--fg)}
+
+/* heat map */
+.heat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:12px}
+.heat svg{width:100%;height:auto;display:block}
+.heat svg text{font-family:var(--mono)}
+.reg{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.reg li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14.5px;line-height:1.3;padding-block:6px;border-bottom:1px solid var(--grid)}
+.reg .id{width:28px;height:28px;border-radius:50%;background:var(--dot);color:var(--dot-ink);font:600 11px var(--mono);display:grid;place-items:center}
+.reg .sc{font:600 13px var(--mono);color:var(--fg-2);text-align:right;white-space:nowrap}
+.ramp{display:flex;align-items:center;gap:6px;font:500 11px var(--mono);color:var(--muted);margin-top:10px}
+.ramp i{width:22px;height:10px;display:inline-block;border-radius:2px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.phase{background:var(--surface);border-radius:8px;padding:12px 14px;min-width:0}
+.phase .d{font:600 12px var(--mono);color:var(--accent-ink)}
+.phase b{display:block;font:700 18px var(--display);font-stretch:88%;margin:2px 0 6px}
+.phase ul{margin:0;padding-left:1.05em;font-size:15px;line-height:1.4}
+.phase li{margin-bottom:.35em}
+.struct{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.struct span{font:600 12px var(--mono);padding:4px 9px;border-radius:999px;background:var(--surface);color:var(--fg)}
+
+/* drivers */
+.drivers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.drivers div{background:var(--surface);border-radius:8px;padding:11px 13px;min-width:0}
+.drivers b{display:block;font:700 16px var(--display);font-stretch:90%}
+.drivers p{margin:2px 0 0;font-size:15px;color:var(--fg-2);line-height:1.45}
+.eq{font:600 15px var(--mono);background:var(--surface);border-radius:8px;padding:10px 14px;margin:6px 0 12px;overflow-x:auto}
+.drill{margin-top:34px}
+.drill h3{font-size:22px;font-weight:750}
+
+/* multiple choice */
+.mc{margin-top:20px}
+.mc-head{display:flex;gap:10px;align-items:flex-start}
+.stem{font-weight:700;font-size:18px;line-height:1.45;margin:0 0 10px;flex:1;min-width:0}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:inherit;font-size:16px;line-height:1.45;cursor:pointer;width:100%}
+.opt:hover:not([disabled]){border-color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt .L{font:600 13px/1.6 var(--mono);color:var(--muted);flex:none}
+.opt .x{flex:1;min-width:0}
+.opt .tag{font:600 12px/1.7 var(--mono);white-space:nowrap;flex:none}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 10%,var(--surface))}
+.opt.right .tag{color:var(--good-ink)}
+.opt.wrong{border-color:var(--crit);background:color-mix(in srgb,var(--crit) 9%,var(--surface))}
+.opt.wrong .tag{color:var(--crit-ink)}
+.why{margin-top:10px;padding:13px 16px;border-radius:8px;background:var(--surface-2);font-size:16px}
+.why p:last-child{margin-bottom:0}
+.test .mc{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}
+.test .mc:first-of-type{border-top:0;padding-top:0}
+.qn{font:600 13px var(--mono);color:var(--accent-ink);display:block;margin-bottom:2px}
+.scorebar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 50px);z-index:5;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--bg);padding-block:10px;margin-top:14px;border-bottom:1px solid var(--line)}
+.score{font:700 22px var(--display);font-stretch:86%}
+.score small{font:500 12px var(--mono);color:var(--muted);margin-left:6px}
+.done{background:var(--accent-soft);border-radius:var(--r);padding:16px 18px;margin-top:24px}
+
+footer{padding-block:40px 64px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-2)}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-fg);font:500 12px/1.4 var(--mono);padding:6px 9px;border-radius:6px;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+
+@media (max-width:760px){
+  .branches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .heat{grid-template-columns:minmax(0,1fr)}
+  .road{grid-template-columns:minmax(0,1fr)}
+  .multiples{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .split,.vocab,.drivers{grid-template-columns:minmax(0,1fr)}
+  .cycle{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cycle li:nth-child(2)::after{display:none}
+  .given{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hrow,.axis{grid-template-columns:minmax(0,1fr)}
+  .axis>div:first-child{display:none}
+  .iv p{font-size:18px}
+  .speed span{display:none}
+}
+@media (max-width:420px){
+  .branches{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .ans:not([hidden]),.why:not([hidden]),.calc li:not([hidden]){animation:rise .28s ease-out}
+  @keyframes rise{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+  html{scroll-behavior:smooth}
+}
+[hidden]:not([hidden=until-found i]){display:none!important}
+/* scoring register */
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.seg{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
+.scorer li{grid-template-columns:auto minmax(0,1fr) auto}
+.scorer .nm{min-width:0}
+.pick{display:flex;gap:6px;align-items:center}
+.pick select{font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:4px 4px;min-width:44px}
+.pick .sc{min-width:34px}
+.reg .w{display:block;font-size:13px;color:var(--fg-2);margin-top:2px;line-height:1.35}
+.reg .nm b{font-weight:600}
+.mytop{font:600 15px/1.4 var(--body);margin:12px 0 0;color:var(--fg)}
+.mapnote{font:500 12px var(--mono);color:var(--fg-2);margin:8px 0 0}
+.bar.b3{background:var(--fg-2)}
+/* voice menu */
+.voicebar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-top:22px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.voicebar label{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.voicebar select{flex:1 1 220px;min-width:0;max-width:100%;font:500 13px var(--mono);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 6px}
+.vhint{flex-basis:100%;margin:0;font-size:14px;line-height:1.45;color:var(--fg-2)}
+@media (max-width:600px){.given>div:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:420px){
+  .scorer li{grid-template-columns:auto minmax(0,1fr)}
+  .scorer .pick{grid-column:2}
+}
+</style>
+<style>
+/* calculators */
+.calcbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-top:22px}
+.calcbox h3{font-size:19px;font-weight:700;margin:0 0 4px}
+.calcbox .sub{margin-top:2px;font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px 14px;margin-top:12px}
+.cgrid label{display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.3;color:var(--fg-2);min-width:0}
+.cgrid input{font:500 15px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:7px 8px;width:100%;min-width:0}
+.cout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.cout div{background:var(--surface-2);border-radius:8px;padding:10px 12px;min-width:0}
+.cout .k{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cout .v{font:700 22px/1.2 var(--display);font-stretch:86%;margin-top:3px}
+.cnote{font-size:15px;line-height:1.5;color:var(--fg-2);margin:12px 0 0}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.gb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.gb .ans{margin-top:0}
+@media (max-width:600px){.gb{grid-template-columns:minmax(0,1fr)}}
+.home-pill{font:600 12px var(--mono,-apple-system);padding:5px 11px;border-radius:999px;color:#fff;background:var(--accent,#0d6b61);text-decoration:none;white-space:nowrap;margin-right:12px}</style>
+<nav aria-label="Case steps" class="rail">
+<div class="rail-in">
+    <a class="home-pill" href="/">All cases</a>
+
+<div class="chips" id="chips">
+<a href="#primer">Primer</a><a href="#prompt">Prompt</a><a href="#clarify">Clarify</a><a href="#framework">Framework</a><a href="#ex1">Earnings</a><a href="#ex2">Working capital</a><a href="#sizing">Price bridge</a><a href="#prioritize">Risks</a><a href="#recommend">Recommend</a><a href="#drills">Technicals</a><a href="#test">Test</a>
+</div>
+<label class="speed" for="rate"><span>Speed</span>
+<select aria-label="Read-aloud speed" id="rate">
+<option value="0.9">0.9×</option><option selected="" value="1">1×</option><option value="1.15">1.15×</option><option value="1.3">1.3×</option>
+</select>
+</label>
+</div>
+</nav>
+<main>
+<header class="hero wrap">
+<p class="eyebrow">Mock case · KPMG Deal Advisory-style · financial due diligence · candidate-led · about 40 minutes</p>
+<h1>Coastline Packaging</h1>
+<p class="lede" data-say="">A private equity firm has agreed to buy a family-owned packaging maker for 240 million dollars. You're on the buy-side due diligence team: are the earnings real, and how much should the buyer actually pay for the shares?</p>
+<ol class="how">
+<li><b>Listen or read</b> the interviewer's prompt. Every step has a Listen button.</li>
+<li><b>Answer out loud</b> before you reveal anything. Use the timers.</li>
+<li><b>Compare</b> with the strong answer, then move to the next step.</li>
+</ol>
+<div class="hero-actions">
+<a class="btn primary" href="#prompt">Start the case</a>
+<a class="btn" href="#primer">2-minute primer first</a>
+<a class="btn" href="#drills">Technical questions</a>
+</div>
+
+</header>
+<div class="wrap">
+<!-- 01 PRIMER -->
+<section class="step" id="primer">
+<div class="sh"><span class="idx">01</span><h2>How a KPMG Deal Advisory case works</h2><button class="btn small listen" type="button">Listen</button></div>
+<p class="def" data-say="">KPMG Deal Advisory helps buyers and sellers on transactions. Financial due diligence is a core part of it: checking a target's earnings, working capital, and debts so the buyer knows what it's really paying for.</p>
+<p class="sub" data-say="">Put simply, the question is always "are the numbers real, and what does that mean for the price?" Formats vary by office and team, so confirm the details with your recruiter.</p>
+<div class="split">
+<div class="panel">
+<h3>How the interview runs</h3>
+<p class="tag">Based on public prep guides</p>
+<ul data-say="">
+<li>Cases are usually candidate-led: you set the structure and ask for data.</li>
+<li>First round: often a case interview and a behavioral interview of about 30 minutes each. Some offices add an online test.</li>
+<li>Later rounds can include a written case: a packet of charts and tables you turn into a short presentation.</li>
+<li>Behavioral questions weigh heavily, tied to KPMG's values: Integrity, Excellence, Courage, Together, and For Better.</li>
+</ul>
+</div>
+<div class="panel">
+<h3>What due diligence teams do</h3>
+<p class="tag">From KPMG's job postings, in short</p>
+<ul data-say="">
+<li>Work on buy-side and sell-side deals for large companies and private equity firms.</li>
+<li>Analyze a target's financial trends and quality of earnings.</li>
+<li>Review working capital, debt, and other obligations that act like debt.</li>
+<li>Write client reports that feed into the price and the purchase agreement.</li>
+</ul>
+</div>
+</div>
+<p class="h-sec">The due diligence path in this case</p>
+<ol aria-label="Earnings, working capital, debt, price" class="cycle" data-say="">
+<li><b>Earnings</b><span>Is EBITDA real and repeatable?</span></li>
+<li><b>Working capital</b><span>What's a normal level?</span></li>
+<li><b>Debt</b><span>What else does the buyer inherit?</span></li>
+<li><b>Price</b><span>What should the shares cost?</span></li>
+</ol>
+<p class="cycle-note">Each finding moves the price, so every step ends in dollars</p>
+<p class="h-sec">Ten terms to drop naturally</p>
+<div class="vocab">
+<div class="term" data-say=""><b>EBITDA</b><p>Earnings before interest, taxes, depreciation, and amortization. Roughly, cash profit from operations. Deals are usually priced as a multiple of it.</p></div>
+<div class="term" data-say=""><b>Quality of earnings</b><p>A review of whether reported earnings are real and repeatable. It ends with an adjusted EBITDA the buyer can trust.</p></div>
+<div class="term" data-say=""><b>Normalization adjustment</b><p>A change that removes one-time items or fixes non-market terms, so EBITDA shows a normal year.</p></div>
+<div class="term" data-say=""><b>Net working capital</b><p>Short-term operating assets minus short-term operating liabilities: mainly receivables plus inventory, minus payables.</p></div>
+<div class="term" data-say=""><b>Working capital peg</b><p>The normal level of working capital the seller must leave in the business at closing. Any shortfall comes off the price.</p></div>
+<div class="term" data-say=""><b>Debt-like items</b><p>Obligations that aren't loans but will cost the buyer cash, like unpaid bonuses or overdue equipment spending.</p></div>
+<div class="term" data-say=""><b>Enterprise value</b><p>What the whole business is worth, before considering debt and cash. Usually EBITDA times a multiple.</p></div>
+<div class="term" data-say=""><b>Equity value</b><p>What the shares are worth: enterprise value minus net debt, minus debt-like items, plus or minus working capital adjustments.</p></div>
+<div class="term" data-say=""><b>Cash-free, debt-free</b><p>A deal where the seller keeps the cash and pays off the debt, so the price is adjusted for both at closing.</p></div>
+<div class="term" data-say=""><b>Purchase agreement</b><p>The contract for the deal. Due diligence findings turn into price changes, protections, and promises in it.</p></div>
+</div>
+</section>
+<!-- 02 PROMPT -->
+<section class="step" id="prompt">
+<div class="sh"><span class="idx">02</span><h2>The case prompt</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">Our client is Halvorsen Capital, a private equity firm. It has agreed in principle to buy Coastline Packaging, a family-owned maker of food packaging, on a cash-free, debt-free basis.</p>
+<p data-say="">The headline price is 240 million dollars, which is 8 times the 30 million dollars of EBITDA that Coastline's management reported for the last 12 months. Coastline has 35 million dollars of net debt.</p>
+<p data-say="">Halvorsen has hired us for buy-side financial due diligence. Are Coastline's earnings real, and how much should Halvorsen actually pay for the shares?</p>
+</div>
+<div class="facts">
+<div><div class="k">Headline price</div><div class="v">$240M</div><div class="d">8× management's EBITDA</div></div>
+<div><div class="k">EBITDA</div><div class="v">$30M</div><div class="d">As reported by management</div></div>
+<div><div class="k">Net debt</div><div class="v">$35M</div><div class="d">$40M loan minus $5M cash</div></div>
+<div><div class="k">Deal type</div><div class="v">Cash-free, debt-free</div><div class="d">Price adjusted at closing</div></div>
+</div>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Restate the question in one sentence, then say what you'd like to clarify.</p>
+<div class="acts"><button class="btn small timer" data-secs="20" type="button">20s timer</button><button aria-controls="a-prompt" aria-expanded="false" class="btn primary small reveal" type="button">Show a strong answer</button></div>
+</div>
+<div class="ans" hidden="" id="a-prompt">
+<p class="who">Strong answer</p>
+<div class="script"><p data-say="">"So Halvorsen wants to know whether Coastline's 30 million of EBITDA is real and repeatable, and what the equity price should be once we adjust for earnings, debt, and working capital. Is that right?"</p></div>
+<p class="note" data-say="">Interviewer: "Exactly." Notice the restatement says "equity price," not just "price." The headline 240 million isn't what Halvorsen pays for the shares.</p>
+</div>
+</section>
+<!-- 03 CLARIFY -->
+<section class="step" id="clarify">
+<div class="sh"><span class="idx">03</span><h2>Clarifying questions</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Ask two or three clarifying questions. Pick ones whose answers would change your approach.</p>
+<div class="acts"><button class="btn small timer" data-secs="60" type="button">60s timer</button><button aria-controls="a-clarify" aria-expanded="false" class="btn primary small reveal" type="button">Show strong questions</button></div>
+</div>
+<div class="ans" hidden="" id="a-clarify">
+<p class="who">Strong questions, with the interviewer's answers</p>
+<ul class="qa">
+<li data-say=""><div class="q">Who prepared the 30 million, and has it been checked?</div><div class="a">Management prepared it from the books. Coastline's annual statements are audited by a regional firm, but nobody has reviewed this EBITDA number for a sale.</div></li>
+<li data-say=""><div class="q">What does the buyer need from us, and by when?</div><div class="a">An adjusted EBITDA, a working capital peg, a list of debt-like items, and the resulting equity price, in four weeks before signing.</div></li>
+<li data-say=""><div class="q">Are there any related-party arrangements?</div><div class="a">Yes. The owner's family owns the building Coastline's main plant uses, and charges below-market rent.</div></li>
+<li data-say=""><div class="q">When does the deal close?</div><div class="a">Right after Coastline's year-end.</div></li>
+<li data-say=""><div class="q">How concentrated are the customers?</div><div class="a">The largest customer, a snack maker, is about 25 percent of sales. Its contract renews next year.</div></li>
+</ul>
+<p class="note" data-say="" style="margin-top:12px">The related-party rent and the year-end timing both turn out to matter. Diligence teams always ask about related parties and anything unusual near closing.</p>
+</div>
+</section>
+<!-- 04 FRAMEWORK -->
+<section class="step" id="framework">
+<div class="sh"><span class="idx">04</span><h2>Build the framework</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">How would you structure the due diligence?</p>
+</div>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Take 60 seconds. Think about every piece that sits between the headline price and what Halvorsen pays for the shares.</p>
+<div class="acts"><button class="btn small timer" data-secs="60" type="button">60s timer</button><button aria-controls="a-frame" aria-expanded="false" class="btn primary small reveal" type="button">Show a strong framework</button></div>
+</div>
+<div class="ans" hidden="" id="a-frame">
+<p class="who">Strong framework</p>
+<div class="tree">
+<div class="root">Is Coastline's EBITDA real, and what should Halvorsen pay for the shares?</div>
+<div class="branches">
+<div class="branch"><span class="n">1</span><b>Quality of earnings</b><ul><li>One-time gains and costs</li><li>Missing costs, like accruals</li><li>Non-market terms, like rent</li></ul></div>
+<div class="branch"><span class="n">2</span><b>Working capital</b><ul><li>Normal level over 12 months</li><li>Level expected at closing</li><li>Any unusual swings</li></ul></div>
+<div class="branch"><span class="n">3</span><b>Net debt and debt-like items</b><ul><li>Loans and cash</li><li>Unpaid bonuses, taxes</li><li>Overdue equipment spending</li></ul></div>
+<div class="branch"><span class="n">4</span><b>Other risks and protections</b><ul><li>Customer concentration</li><li>Contracts and renewals</li><li>What goes in the agreement</li></ul></div>
+</div>
+</div>
+<h3>Say it like this</h3>
+<div class="script">
+<p data-say="">"I'd follow the price from the headline down to the shares. First, quality of earnings: is the 30 million real, after taking out one-time items, adding missing costs, and fixing non-market terms like the family's rent? That sets the enterprise value. Second, working capital: what's a normal level, and will the seller deliver it at closing? Third, net debt and debt-like items: what else will cost Halvorsen cash after closing? Fourth, other risks, like the big customer, and how to protect against them in the purchase agreement. Given the below-market rent, my hypothesis is that EBITDA is overstated, so I'd start with the earnings."</p>
+</div>
+<h3>Why it works</h3>
+<ul data-say="">
+<li>It follows the money: enterprise value, then everything between it and the equity price.</li>
+<li>Each bucket ends in dollars, which is what the buyer needs.</li>
+<li>It uses a clue from the clarifying questions to form a hypothesis.</li>
+</ul>
+<p class="note" data-say="">If you blank, "earnings, working capital, debt, risks" covers almost any financial due diligence case.</p>
+</div>
+</section>
+<!-- 05 EXHIBIT 1 -->
+<section class="step" id="ex1">
+<div class="sh"><span class="idx">05</span><h2>Exhibit 1: quality of earnings</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">Our team reviewed the books. Here's the bridge from management's EBITDA to our adjusted EBITDA. Walk me through it.</p>
+</div>
+<figure class="ex">
+<div class="ex-h"><span class="ex-t">From reported to adjusted EBITDA</span><span class="ex-ref">Exhibit 1 · WP-QOE-01 · $ millions</span></div>
+<p class="ex-s">Last 12 months. Gray bars are totals; blue adds to EBITDA; orange takes away.</p>
+<div class="hbar" id="hb1"></div>
+<figcaption>Source: diligence team review (case data).</figcaption>
+</figure>
+<div class="mc" data-answer="2">
+<div class="mc-head"><p class="stem" data-say="">What's the so-what?</p></div>
+<div class="opts">
+<button class="opt" data-say="" type="button">The adjustments are small, so the 240 million price is fine.</button>
+<button class="opt" data-say="" type="button">The legal fees should be removed from EBITDA, which raises the price.</button>
+<button class="opt" data-say="" type="button">Repeatable EBITDA is about 27 million, not 30. At 8 times, that cuts enterprise value by about 24 million, to 216 million.</button>
+<button class="opt" data-say="" type="button">The rent adjustment doesn't matter because the family owns the building.</button>
+</div>
+<div class="why" hidden="">
+<p data-say="">Three items lower EBITDA. The gain on selling old equipment is one-time, so it comes out. Bonuses were paid in cash but never accrued, so a full year of cost was missing. And the family charges below-market rent, which a new owner won't get, so market rent goes in. One item raises EBITDA: one-time legal fees for a settled lawsuit get added back. Net, EBITDA drops 3 million, and every million of EBITDA is worth 8 million of price.</p>
+</div>
+</div>
+<div class="move">
+<span class="lbl">Then</span>
+<p data-say="">Say the insight and its effect on price, then ask for your next piece of data.</p>
+<div class="acts"><button aria-controls="a-ex1" aria-expanded="false" class="btn primary small reveal" type="button">Show how to say it</button></div>
+</div>
+<div class="ans" hidden="" id="a-ex1">
+<p class="who">Say it like this</p>
+<div class="script"><p data-say="">"Repeatable EBITDA is about 27 million, not 30. We remove a one-time gain, add a full year of bonus cost that wasn't accrued, and charge market rent for the family's building, then add back one-time legal fees. At 8 times, that's an enterprise value of about 216 million instead of 240. Next I'd like to look at working capital, especially around closing."</p></div>
+<p class="note" data-say="">Notice the logic for each adjustment: one-time, missing, or not at market terms. That's how diligence teams explain them.</p>
+</div>
+</section>
+<!-- 06 EXHIBIT 2 -->
+<section class="step" id="ex2">
+<div class="sh"><span class="idx">06</span><h2>Exhibit 2: working capital, month by month</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">Here's Coastline's working capital for the last 12 months, plus a few drivers. The deal closes right after December. What do you see?</p>
+</div>
+<figure class="ex">
+<div class="ex-h"><span class="ex-t">Working capital and its drivers, January to December</span><span class="ex-ref">Exhibit 2 · WP-NWC-02</span></div>
+<p class="ex-s">Month-end figures. Each panel has its own scale, starting at zero.</p>
+<div class="multiples" id="mult"></div>
+<div class="row" style="margin-top:12px"><button aria-controls="t-ex2" aria-expanded="false" class="btn small reveal" type="button">Show as table</button></div>
+<div class="tblwrap" hidden="" id="t-ex2"></div>
+<figcaption>Days sales outstanding (DSO) is how long customers take to pay. Days payable outstanding (DPO) is how long Coastline takes to pay suppliers. Source: Coastline monthly accounts (case data).</figcaption>
+</figure>
+<div class="mc" data-answer="1">
+<div class="mc-head"><p class="stem" data-say="">What's the so-what?</p></div>
+<div class="opts">
+<button class="opt" data-say="" type="button">Cash went up, so the business is doing better.</button>
+<button class="opt" data-say="" type="button">Working capital dropped from a normal 20 million to 16 million right before closing, because the seller collected from customers faster and paid suppliers slower. The buyer would have to put that 4 million back.</button>
+<button class="opt" data-say="" type="button">Revenue fell in the last two months.</button>
+<button class="opt" data-say="" type="button">Inventory is the problem.</button>
+</div>
+<div class="why" hidden="">
+<p data-say="">Sales were flat, and inventory days held steady. But in the last two months, customers were pushed to pay faster, with DSO falling from about 50 days to 40, and suppliers were paid slower, with DPO rising from about 40 to 55. That pulled about 4 million of cash into the business, which the seller keeps in a cash-free deal. After closing, suppliers still need paying and collections go back to normal, so Halvorsen would have to fund that 4 million. The fix is a working capital peg at the normal level of about 20 million.</p>
+</div>
+</div>
+<div class="move">
+<span class="lbl">Then</span>
+<p data-say="">Synthesize both exhibits in three sentences.</p>
+<div class="acts"><button aria-controls="a-ex2" aria-expanded="false" class="btn primary small reveal" type="button">Show how to say it</button></div>
+</div>
+<div class="ans" hidden="" id="a-ex2">
+<p class="who">Say it like this</p>
+<div class="script"><p data-say="">"Repeatable EBITDA is about 27 million, which puts enterprise value at about 216 million. Working capital has averaged about 20 million, but it's heading into closing at about 16 million because the seller sped up collections and slowed payments, so the price should assume a peg of 20 million and take off the 4 million shortfall. Next I'd look for debt-like items, things that will cost Halvorsen cash after closing."</p></div>
+</div>
+</section>
+<!-- 07 PRICE BRIDGE -->
+<section class="step" id="sizing">
+<div class="sh"><span class="idx">07</span><h2>The price bridge: enterprise value to equity value</h2><button class="btn small listen" type="button">Listen</button></div>
+<p class="sub" data-say="">This is the core math of financial due diligence: start from enterprise value, then subtract everything the buyer inherits, to get what the shares are worth.</p>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">The team also found some debt-like items. Walk me from the seller's number to what Halvorsen should pay for the shares.</p>
+</div>
+<div class="given">
+<div><div class="k">Adjusted EBITDA</div><div class="v">$27M</div></div>
+<div><div class="k">Multiple</div><div class="v">8×</div></div>
+<div><div class="k">Net debt: $40M loan − $5M cash</div><div class="v">$35M</div></div>
+<div><div class="k">Unpaid bonuses for last year</div><div class="v">$2M</div></div>
+<div><div class="k">Overdue equipment spending</div><div class="v">$3M</div></div>
+<div><div class="k">Customer deposits for undelivered orders</div><div class="v">$2M</div></div>
+<div><div class="k">Unpaid income taxes from before closing</div><div class="v">$1M</div></div>
+<div><div class="k">Working capital peg</div><div class="v">$20M</div></div>
+<div><div class="k">Expected working capital at closing</div><div class="v">$16M</div></div>
+</div>
+<p class="src">Case assumptions. The seller's view is $240M of enterprise value minus $35M of net debt, or $205M for the shares.</p>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Say the formula first: equity value equals enterprise value, minus net debt, minus debt-like items, minus any working capital shortfall. Then compare with the seller's 205 million.</p>
+<div class="acts"><button class="btn small timer" data-secs="120" type="button">2 min timer</button></div>
+</div>
+<div class="stepper" style="margin-top:14px">
+<ol class="calc">
+<li class="st" data-say="Step 1. The seller's view. 240 million minus 35 million of net debt is 205 million for the shares." hidden=""><span class="t">1 · The seller's view</span><span class="f">$240M − $35M net debt</span><span class="r tnum">$205M</span></li>
+<li class="st" data-say="Step 2. Enterprise value on adjusted EBITDA. 27 million times 8 is 216 million." hidden=""><span class="t">2 · Adjusted enterprise value</span><span class="f">$27M × 8</span><span class="r tnum">$216M</span></li>
+<li class="st" data-say="Step 3. Subtract net debt. 216 minus 35 is 181 million." hidden=""><span class="t">3 · Minus net debt</span><span class="f">$216M − $35M</span><span class="r tnum">$181M</span></li>
+<li class="st" data-say="Step 4. Subtract debt-like items. 2 plus 3 plus 2 plus 1 is 8 million. 181 minus 8 is 173 million." hidden=""><span class="t">4 · Minus debt-like items</span><span class="f">$2M + $3M + $2M + $1M = $8M</span><span class="r tnum">$173M</span></li>
+<li class="st" data-say="Step 5. Subtract the working capital shortfall. A 20 million peg minus 16 million at closing is 4 million short. 173 minus 4 is 169 million." hidden=""><span class="t">5 · Minus working capital shortfall</span><span class="f">$20M peg − $16M at closing = $4M</span><span class="r tnum">$169M</span></li>
+<li class="st" data-say="Step 6. Compare. 169 million versus the seller's 205 million is 36 million lower, about 18 percent. Two-thirds of the gap comes from earnings." hidden=""><span class="t">6 · Compare</span><span class="f">$205M − $169M. $24M of the gap is earnings</span><span class="r tnum">−$36M</span></li>
+</ol>
+<div class="row"><button class="btn primary small next" type="button">Reveal step 1 of 6</button><button class="btn small reset" type="button">Start over</button></div>
+</div>
+<figure class="ex">
+<div class="ex-h"><span class="ex-t">From headline price to equity price</span><span class="ex-ref">$ millions</span></div>
+<div class="legend"><span><i style="background:var(--fg-2)"></i>Value</span><span><i style="background:var(--s2)"></i>Takes away</span></div>
+<div class="hbar" id="siz"></div>
+<figcaption>Every step uses numbers from the two exhibits and the diligence findings.</figcaption>
+</figure>
+<div class="mc" data-answer="1">
+<div class="mc-head"><p class="stem" data-say="">Quick check: at 8 times, how much does each 1 million of EBITDA adjustment change the price?</p></div>
+<div class="opts">
+<button class="opt" data-say="" type="button">1 million</button>
+<button class="opt" data-say="" type="button">8 million</button>
+<button class="opt" data-say="" type="button">800 thousand</button>
+<button class="opt" data-say="" type="button">It doesn't change the price</button>
+</div>
+<div class="why" hidden=""><p data-say="">Price is EBITDA times 8, so 1 million less EBITDA is 8 million less price. That's why quality of earnings drives most of the gap. A debt-like item, by contrast, comes off dollar for dollar. Everyday version: if a house is priced at 8 times its yearly rent, finding 1,000 dollars less rent knocks 8,000 off the price, but a 1,000 dollar repair bill only knocks off 1,000.</p></div>
+</div>
+<div class="calcbox">
+<h3>Price bridge calculator</h3>
+<p class="sub">Starts with the case numbers. Try a different multiple or a smaller working capital shortfall.</p>
+<div class="cgrid">
+<label for="pb-ebitda">Adjusted EBITDA ($M)<input id="pb-ebitda" min="0" step="0.5" type="number" value="27"/></label>
+<label for="pb-mult">Multiple (×)<input id="pb-mult" min="0" step="0.5" type="number" value="8"/></label>
+<label for="pb-debt">Net debt ($M)<input id="pb-debt" step="1" type="number" value="35"/></label>
+<label for="pb-dli">Debt-like items ($M)<input id="pb-dli" min="0" step="1" type="number" value="8"/></label>
+<label for="pb-peg">Working capital peg ($M)<input id="pb-peg" step="1" type="number" value="20"/></label>
+<label for="pb-close">Working capital at closing ($M)<input id="pb-close" step="1" type="number" value="16"/></label>
+</div>
+<div class="cout">
+<div><div class="k">Enterprise value</div><div class="v" id="pb-ev">–</div></div>
+<div><div class="k">Working capital adjustment</div><div class="v" id="pb-adj">–</div></div>
+<div><div class="k">Equity price</div><div class="v" id="pb-eq">–</div></div>
+</div>
+<p aria-live="polite" class="cnote" id="pb-note"></p>
+<div class="cbtns"><button class="btn small" id="pb-reset" type="button">Reset to case numbers</button></div>
+</div>
+<div class="move">
+<span class="lbl">Then</span>
+<p data-say="">Summarize the bridge in two sentences.</p>
+<div class="acts"><button aria-controls="a-size" aria-expanded="false" class="btn primary small reveal" type="button">Show how to say it</button></div>
+</div>
+<div class="ans" hidden="" id="a-size">
+<p class="who">Say it like this</p>
+<div class="script"><p data-say="">"On adjusted EBITDA of 27 million, enterprise value is about 216 million. After 35 million of net debt, 8 million of debt-like items, and a 4 million working capital shortfall, Halvorsen should pay about 169 million for the shares, 36 million less than the seller's 205 million, and two-thirds of that gap comes from earnings."</p></div>
+<p class="note" data-say="">If the interviewer asks, "The seller will never accept 8 times 27": "Then the debate is about the multiple, not the earnings. Even at 8.5 times, equity is about 182 million. And the debt-like items and working capital shortfall come off whatever multiple we agree on."</p>
+</div>
+</section>
+<!-- 08 RISKS -->
+<section class="step" id="prioritize">
+<div class="sh"><span class="idx">08</span><h2>Score the diligence findings</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">Here are the open issues from diligence. Score each for likelihood and impact. Which three should Halvorsen address in the purchase agreement?</p>
+</div>
+<figure class="ex">
+<div class="ex-h"><span class="ex-t">Risk heat map: likelihood × impact</span><span class="ex-ref">Exhibit 3 · Open diligence issues</span></div>
+<div aria-label="Which scores to plot" class="seg" role="group">
+<button aria-pressed="true" class="btn small" id="mMine" type="button">Your scores</button>
+<button aria-pressed="false" class="btn small" disabled="" id="mTeam" type="button">Team's scores</button>
+</div>
+<div class="heat">
+<div>
+<div id="heatmap"></div>
+<p class="mapnote" id="mapnote">Your dots appear here as you score each issue.</p>
+</div>
+<div>
+<p class="mapnote" style="margin:0 0 6px">Pick L (likelihood) and I (impact): 1 is low, 5 is high.</p>
+<ul class="reg scorer" id="scorer"></ul>
+<p aria-live="polite" class="mytop" id="mytop">Score all six to see your top three.</p>
+<div aria-hidden="true" class="ramp">Score <i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i><i style="background:var(--h5)"></i> higher</div>
+</div>
+</div>
+<figcaption>Score = likelihood × impact. Issues are from the case; scores are yours to set.</figcaption>
+</figure>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Score each issue out loud with a one-line reason, then name your top three and how you'd protect against each.</p>
+<div class="acts"><button class="btn small timer" data-secs="120" type="button">2 min timer</button><button aria-controls="a-prio" aria-expanded="false" class="btn primary small reveal" id="rv-prio" type="button">Show the team's scores</button></div>
+</div>
+<div class="ans" hidden="" id="a-prio">
+<p class="who">The team's scores, with reasons</p>
+<ul class="reg" id="teamlist"></ul>
+<h3>Say it like this</h3>
+<div class="script"><p data-say="">"Three protections in the purchase agreement. First, for the top customer, make the contract renewal a condition of closing, or hold back part of the price until it renews. Second, set the working capital peg at 20 million, with a true-up after closing. Third, a specific promise from the seller to cover the unpaid bonuses and taxes, called an indemnity."</p></div>
+</div>
+<div class="mc" data-answer="0">
+<div class="mc-head"><p class="stem" data-say="">Which three come first?</p></div>
+<div class="opts">
+<button class="opt" data-say="" type="button">R1, R2, and R3: the top customer, the working capital dip, and hidden liabilities.</button>
+<button class="opt" data-say="" type="button">R4, R5, and R6: equipment, resin prices, and rent.</button>
+<button class="opt" data-say="" type="button">R2, R5, and R6.</button>
+<button class="opt" data-say="" type="button">All six equally.</button>
+</div>
+<div class="why" hidden="">
+<p data-say="">R1 could cut a quarter of sales. R2 is already happening and costs 4 million. R3 is cash the buyer would pay after closing. R4 is already in the price as a debt-like item, R5 is a normal business risk, and R6 is already fixed by the market-rent adjustment.</p>
+</div>
+</div>
+</section>
+<!-- 09 RECOMMEND -->
+<section class="step" id="recommend">
+<div class="sh"><span class="idx">09</span><h2>The recommendation</h2><button class="btn small listen" type="button">Listen</button></div>
+<div class="iv">
+<p class="who">Interviewer</p>
+<p data-say="">The deal partner wants your bottom line in 60 seconds. What should Halvorsen do?</p>
+</div>
+<div class="move">
+<span class="lbl">Your move</span>
+<p data-say="">Lead with the number. Then three reasons, the main risk, and next steps.</p>
+<div class="acts"><button class="btn small timer" data-secs="60" type="button">60s timer</button><button aria-controls="a-rec" aria-expanded="false" class="btn primary small reveal" type="button">Show a strong answer</button></div>
+</div>
+<div class="ans" hidden="" id="a-rec">
+<p class="who">Strong answer</p>
+<div class="struct"><span>Answer</span><span>3 reasons</span><span>Risk</span><span>Next steps</span></div>
+<div class="script">
+<p data-say="">"Halvorsen should go ahead, but at about 169 million for the shares, not the 205 million the headline implies."</p>
+<p data-say="">"First, earnings are overstated. Repeatable EBITDA is about 27 million, not 30, once we remove a one-time gain, add missing bonus costs, and charge market rent. At 8 times, that's 24 million off the price."</p>
+<p data-say="">"Second, Halvorsen inherits 8 million of debt-like items: unpaid bonuses and taxes, overdue equipment spending, and customer deposits for orders it will have to deliver."</p>
+<p data-say="">"Third, working capital is being run down before closing. It's normally about 20 million, but it's heading to about 16 million, so we should set a 20 million peg and take off the shortfall."</p>
+<p data-say="">"The main risk is the top customer, at 25 percent of sales with a renewal next year. Next steps: make the renewal a closing condition or hold back part of the price, get a seller indemnity for the bonuses and taxes, and confirm the equipment spending with an engineering review."</p>
+</div>
+<h3>What goes in the purchase agreement</h3>
+<div class="road">
+<div class="phase" data-say=""><span class="d">Price</span><b>Adjust</b><ul><li>Price on adjusted EBITDA of $27M.</li><li>Deduct $8M of debt-like items.</li></ul></div>
+<div class="phase" data-say=""><span class="d">Closing</span><b>Peg</b><ul><li>Working capital peg of $20M.</li><li>True-up after closing for any shortfall.</li></ul></div>
+<div class="phase" data-say=""><span class="d">Protection</span><b>Protect</b><ul><li>Seller indemnity for pre-closing bonuses and taxes.</li><li>Hold back part of the price until the top customer renews.</li></ul></div>
+</div>
+</div>
+</section>
+<!-- 10 TECHNICALS -->
+<section class="step" id="drills">
+<div class="sh"><span class="idx">10</span><h2>Bonus drills: technical questions</h2><button class="btn small listen" type="button">Listen</button></div>
+<p class="sub" data-say="">Deal Advisory interviews, especially for financial due diligence, can include quick accounting and deal questions. Answer each out loud in two or three sentences, then compare.</p>
+<div class="reps">
+<div class="rep"><p class="rq" data-say="">1. What is EBITDA, and why do buyers use it?</p><div class="acts"><button aria-controls="t1" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t1"><div class="script"><p data-say="">"Earnings before interest, taxes, depreciation, and amortization. It's a rough measure of cash profit from operations that ignores how the company is financed and taxed, so buyers can compare companies and price them as a multiple."</p></div></div></div>
+<div class="rep"><p class="rq" data-say="">2. What's the difference between enterprise value and equity value?</p><div class="acts"><button aria-controls="t2" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t2"><div class="script"><p data-say="">"Enterprise value is what the whole business is worth to all investors. Equity value is what the shares are worth: enterprise value minus net debt and debt-like items, adjusted for working capital. Think of a house: the house is worth 500 thousand, but if there's a 300 thousand mortgage, the owner's share is 200 thousand."</p></div></div></div>
+<div class="rep"><p class="rq" data-say="">3. What is net working capital, and why does a buyer care?</p><div class="acts"><button aria-controls="t3" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t3"><div class="script"><p data-say="">"It's receivables plus inventory minus payables: the cash tied up in running the business day to day. A buyer needs a normal level on day one. If the seller leaves too little, the buyer has to put in its own cash, which is why deals set a peg."</p></div></div></div>
+<div class="rep"><p class="rq" data-say="">4. What makes an item "debt-like"?</p><div class="acts"><button aria-controls="t4" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t4"><div class="script"><p data-say="">"It isn't a loan, but it will cost the buyer cash because of something that happened before closing. Examples: unpaid bonuses, unpaid taxes, overdue equipment spending, or deposits for orders still to be delivered. They come off the price dollar for dollar."</p></div></div></div>
+<div class="rep"><p class="rq" data-say="">5. Give three common quality of earnings adjustments.</p><div class="acts"><button aria-controls="t5" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t5"><div class="script"><p data-say="">"Removing one-time items, like a gain on selling equipment or a lawsuit settlement. Adding costs that weren't recorded, like unaccrued bonuses. And fixing related-party terms to market rates, like rent paid to the owner's family."</p></div></div></div>
+<div class="rep"><p class="rq" data-say="">6. Revenue was booked but cash wasn't collected. Where does it show up?</p><div class="acts"><button aria-controls="t6" aria-expanded="false" class="btn primary small reveal" type="button">Show answer</button></div>
+<div class="ans" hidden="" id="t6"><div class="script"><p data-say="">"Revenue and profit go up on the income statement, and accounts receivable goes up on the balance sheet. Cash doesn't change until the customer pays. That's why diligence teams compare EBITDA with cash flow: growing profit with flat cash can be a warning sign."</p></div></div></div>
+</div>
+</section>
+<!-- 11 TEST -->
+<section class="step test" id="test">
+<div class="sh"><span class="idx">11</span><h2>Practice test</h2><button class="btn small listen" type="button">Listen</button></div>
+<p class="sub" data-say="">Twelve multiple-choice questions on due diligence basics and the Coastline case. Pick an answer to see the explanation.</p>
+<div class="scorebar"><span class="score" id="score">0 / 0<small>answered 0 of 12</small></span><button class="btn small" id="resetTest" type="button">Reset test</button></div>
+<div id="testq"></div>
+<div class="done" hidden="" id="done"></div>
+</section>
+</div>
+</main>
+<footer>
+<div class="wrap">
+<p>An original practice case written in the style of KPMG Deal Advisory interviews. It isn't an official KPMG case. All figures, exhibits, and companies are invented. Format notes come from public interview prep guides and KPMG job postings, and formats vary by office and team.</p>
+<p>Night-before tip: redo the price bridge from memory, then answer the six technical questions out loud.</p>
+</div>
+</footer>
+<div hidden="" id="tip" role="tooltip"></div>
+<script>
+(function(){
+  "use strict";
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const NS="http://www.w3.org/2000/svg";
+  const svgEl=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const LET="ABCD";
+
+  /* ---------- tooltip ---------- */
+  const tip=$("#tip");
+  function showTip(el,x,y){tip.textContent=el.getAttribute("data-tip");tip.hidden=false;
+    const w=tip.offsetWidth,h=tip.offsetHeight;let L=x+12,T=y-h-10;
+    if(L+w>innerWidth-8)L=x-w-12; if(T<8)T=y+14; tip.style.left=Math.max(8,L)+"px";tip.style.top=T+"px";}
+  document.addEventListener("pointermove",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t)showTip(t,e.clientX,e.clientY);else tip.hidden=true;});
+  document.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(t){const r=t.getBoundingClientRect();showTip(t,r.left+r.width/2,r.top);}});
+  document.addEventListener("focusout",()=>{tip.hidden=true;});
+  addEventListener("scroll",()=>{tip.hidden=true;},{passive:true});
+
+  /* ---------- reveal toggles ---------- */
+  $$(".reveal").forEach(b=>{const t=document.getElementById(b.getAttribute("aria-controls"));const show=b.textContent;
+    const hide=show.startsWith("Show as")?"Hide table":"Hide";
+    b.addEventListener("click",()=>{const open=t.hidden;t.hidden=!open;b.setAttribute("aria-expanded",String(open));b.textContent=open?hide:show;});});
+
+  /* ---------- timers ---------- */
+  let actx=null;
+  function beep(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,actx.currentTime);g.gain.exponentialRampToValueAtTime(.2,actx.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+.5);o.connect(g).connect(actx.destination);o.start();o.stop(actx.currentTime+.55);}catch(e){}}
+  $$(".timer").forEach(b=>{const secs=+b.dataset.secs,label=b.textContent;let id=null,left=0;
+    const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+    b.addEventListener("click",()=>{
+      if(id){clearInterval(id);id=null;b.textContent=label;b.setAttribute("aria-pressed","false");return;}
+      try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();}catch(e){}
+      left=secs;b.textContent=fmt(left)+" · stop";b.setAttribute("aria-pressed","true");
+      id=setInterval(()=>{left--;if(left<=0){clearInterval(id);id=null;b.textContent="Time. Answer now";b.setAttribute("aria-pressed","false");beep();setTimeout(()=>{if(!id)b.textContent=label;},4000);return;}b.textContent=fmt(left)+" · stop";},1000);
+    });});
+
+  /* ---------- steppers ---------- */
+  $$(".stepper").forEach(s=>{const steps=$$(".st",s),next=$(".next",s),reset=$(".reset",s);let i=0;
+    const upd=()=>{next.hidden=i>=steps.length;next.textContent="Reveal step "+(i+1)+" of "+steps.length;};
+    next.addEventListener("click",()=>{if(i<steps.length){steps[i].hidden=false;i++;upd();}});
+    reset.addEventListener("click",()=>{steps.forEach(x=>x.hidden=true);i=0;upd();});upd();});
+
+
+  /* ---------- chart builders ---------- */
+  function niceMax(m){const steps=[1,1.5,2,2.5,3,4,5,6,8,10,12,15,20,25,30,40,50,60,80,100,120,150,200,250,300,400,500,600,800,1000,1200,1500,2000];for(const s of steps)if(s>=m)return s;return Math.ceil(m/500)*500;}
+  function roundTop(x,y,w,h,r){r=Math.min(r,h,w/2);return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`;}
+  function multiples(el,Q,SER){
+    SER.forEach(s=>{
+      const f=s.f||(v=>String(v)),n=s.v.length,last=n-1;
+      const card=document.createElement("div");card.className="mini";
+      card.innerHTML=`<div class="nm">${s.k}</div><div class="ch">${f(s.v[0])} → ${f(s.v[last])}</div>`;
+      const W=200,H=104,top=18,bot=20,pl=4,pr=4,ph=H-top-bot,band=(W-pl-pr)/n,bw=Math.min(22,band*.58),max=niceMax(Math.max(...s.v)*1.12);
+      const svg=svgEl("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":`${s.k}: ${s.v.map((v,i)=>Q[i]+" "+f(v)).join(", ")}`});
+      s.v.forEach((v,i)=>{const cx=pl+band*i+band/2,h=Math.max(1,v/max*ph),x=cx-bw/2,y=top+ph-h;
+        svg.appendChild(svgEl("path",{d:roundTop(x,y,bw,h,4),fill:"var(--s1)"}));
+        if(i===0||i===last){const edge=n>6,tx=edge?(i===0?Math.max(1,x):Math.min(W-1,x+bw)):cx,an=edge?(i===0?"start":"end"):"middle";const t=svgEl("text",{x:tx,y:y-5,"text-anchor":an,"font-size":"10.5","font-weight":"600",fill:"var(--fg-2)"});t.textContent=f(v);svg.appendChild(t);}
+        const q=svgEl("text",{x:cx,y:H-5,"text-anchor":"middle","font-size":n>5?"8.5":"9.5",fill:"var(--muted)"});q.textContent=Q[i];svg.appendChild(q);
+        svg.appendChild(svgEl("rect",{x:pl+band*i,y:0,width:band,height:H,fill:"transparent","data-tip":`${s.k} · ${Q[i]}: ${f(v)}`}));
+      });
+      svg.insertBefore(svgEl("line",{x1:0,x2:W,y1:top+ph+.5,y2:top+ph+.5,stroke:"var(--axis)","stroke-width":"1"}),svg.firstChild);
+      card.appendChild(svg);el.appendChild(card);
+    });
+  }
+  function multTable(el,Q,SER){
+    el.innerHTML=`<table><thead><tr><th>Measure</th>${Q.map(q=>`<th class="n">${q}</th>`).join("")}</tr></thead><tbody>${SER.map(s=>`<tr><td>${s.k}</td>${s.v.map(v=>`<td class="n">${(s.f||String)(v)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  function axis(el,o){const ax=document.createElement("div");ax.className="axis";
+    ax.innerHTML=`<div></div><div class="ticks">${o.ticks.map(v=>`<span style="left:${v/o.max*100}%">${o.tick(v)}</span>`).join("")}</div>`;el.appendChild(ax);
+    if(o.ref&&o.ref.note){const p=document.createElement("p");p.className="tolnote";p.textContent=o.ref.note;el.appendChild(p);}}
+  /* one bar per row: rows {d,t,v,lab,tip,st:{bad,txt}} */
+  function hbar(el,rows,o){
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";const w=r.v/o.max*100;
+      row.innerHTML=`<div class="hlab"><b>${r.d}</b>${r.t?`<span>${r.t}</span>`:""}${r.st?`<span class="status ${r.st.bad?"bad":"ok"}">${r.st.bad?"▲ ":"✓ "}${r.st.txt}</span>`:""}</div>
+        <div class="track" tabindex="0" data-tip="${r.tip||r.d+": "+r.lab}"><div class="bar" style="width:${Math.max(.4,w)}%"></div><span class="bval" style="left:${w}%">${r.lab}</span>${o.ref?`<div class="tol" style="left:${o.ref.at/o.max*100}%"></div>`:""}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+  /* stacked segments, total named in the label: rows {n,d,seg:[[v,cls,tip]]} */
+  function stack(el,rows,o){
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";let x=0,bars="";
+      r.seg.forEach(([v,c,t],i)=>{const left=x/o.max*100,w=v/o.max*100;
+        bars+=`<div class="bar ${c}" tabindex="0" data-tip="${t}" style="left:calc(${left}% + ${i?2:0}px);width:calc(${w}% - ${i?2:0}px);border-radius:${i===r.seg.length-1?"0 4px 4px 0":"0"}"></div>`;x+=v;});
+      row.innerHTML=`<div class="hlab"><b>${r.n}</b><span>${r.d}</span></div><div class="track">${bars}${o.ref?`<div class="tol" style="left:${o.ref.at/o.max*100}%"></div>`:""}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+  /* waterfall: rows {n,d,total} or {n,d,delta}; totals neutral, ups blue, downs orange */
+  function waterfall(el,rows,o){let run=0;
+    rows.forEach(r=>{const row=document.createElement("div");row.className="hrow";let bar,lab,tip;
+      if(r.total!==undefined){run=r.total;bar=`<div class="bar b3" style="width:${r.total/o.max*100}%"></div>`;lab=`<span class="bval" style="left:${r.total/o.max*100}%">${o.fmt(r.total)}</span>`;tip=`${r.n}: ${o.fmt(r.total)}`;}
+      else{const a=Math.min(run,run+r.delta),b=Math.max(run,run+r.delta);
+        bar=`<div class="bar ${r.delta<0?"b2":""}" style="left:${a/o.max*100}%;width:${(b-a)/o.max*100}%;border-radius:3px"></div>`;
+        lab=`<span class="bval" style="left:${b/o.max*100}%">${r.delta<0?"−":"+"}${o.fmt(Math.abs(r.delta))}</span>`;tip=`${r.n}: ${r.delta<0?"−":"+"}${o.fmt(Math.abs(r.delta))}`;run+=r.delta;}
+      row.innerHTML=`<div class="hlab"><b>${r.n}</b><span>${r.d}</span></div><div class="track" tabindex="0" data-tip="${tip}">${bar}${lab}</div>`;
+      el.appendChild(row);});
+    axis(el,o);
+  }
+
+  /* ---------- heat map you score ---------- */
+  function heatScorer(HM){
+    const band=s=>s>=20?5:s>=15?4:s>=9?3:s>=5?2:1;
+    const C=54,ox=84,oy=8,G=C*5,HW=ox+G+8,HH=oy+G+52;
+    const hs=svgEl("svg",{viewBox:`0 0 ${HW} ${HH}`,role:"img","aria-label":"Heat map"});
+    for(let X=1;X<=5;X++)for(let Y=1;Y<=5;Y++)
+      hs.appendChild(svgEl("rect",{x:ox+(X-1)*C+1,y:oy+(5-Y)*C+1,width:C-2,height:C-2,rx:3,fill:`var(--h${band(X*Y)})`}));
+    for(let k=1;k<=5;k++){
+      const t=svgEl("text",{x:ox+(k-.5)*C,y:oy+G+15,"text-anchor":"middle","font-size":"11",fill:"var(--fg-2)"});t.textContent=k;hs.appendChild(t);
+      if(HM.lx[k-1]){const t2=svgEl("text",{x:ox+(k-.5)*C,y:oy+G+28,"text-anchor":"middle","font-size":"9.5",fill:"var(--muted)"});t2.textContent=HM.lx[k-1];hs.appendChild(t2);}
+      const u=svgEl("text",{x:ox-8,y:oy+(5-k+.5)*C+4,"text-anchor":"end","font-size":"11",fill:"var(--fg-2)"});u.textContent=k;hs.appendChild(u);
+      if(HM.ly[k-1]){const u2=svgEl("text",{x:ox-20,y:oy+(5-k+.5)*C+4,"text-anchor":"end","font-size":"9.5",fill:"var(--muted)"});u2.textContent=HM.ly[k-1];hs.appendChild(u2);}
+    }
+    const xt=svgEl("text",{x:ox+G/2,y:oy+G+46,"text-anchor":"middle","font-size":"11","font-weight":"600",fill:"var(--fg)"});xt.textContent=HM.xName+" →";hs.appendChild(xt);
+    const yt=svgEl("text",{x:9,y:oy+G/2,"text-anchor":"middle","font-size":"11","font-weight":"600",fill:"var(--fg)",transform:`rotate(-90 9 ${oy+G/2})`});yt.textContent=HM.yName+" →";hs.appendChild(yt);
+    const dots=svgEl("g");hs.appendChild(dots);$("#heatmap").appendChild(hs);
+    const IT=HM.items,xn=HM.xName.toLowerCase(),yn=HM.yName.toLowerCase();
+    const opt=lab=>`<option value="">${lab}</option>`+[1,2,3,4,5].map(v=>`<option value="${v}">${v}</option>`).join("");
+    $("#scorer").innerHTML=IT.map(r=>`<li><span class="id">${r.id}</span><span class="nm">${r.n}</span><span class="pick"><select id="x-${r.id}" aria-label="${r.id} ${xn}, 1 to 5">${opt(HM.xs)}</select><select id="y-${r.id}" aria-label="${r.id} ${yn}, 1 to 5">${opt(HM.ys)}</select><span class="sc" id="s-${r.id}">–</span></span></li>`).join("");
+    const rank=(a,b)=>b.x*b.y-a.x*a.y||b.y-a.y;
+    $("#teamlist").innerHTML=[...IT].sort(rank).map(r=>`<li data-say="${r.id}. ${r.n}. ${HM.xName} ${r.x}, ${yn} ${r.y}, score ${r.x*r.y}. ${r.w}"><span class="id">${r.id}</span><span class="nm"><b>${r.n}</b><span class="w">${r.w}</span></span><span class="sc">${r.x}×${r.y} = ${r.x*r.y}</span></li>`).join("");
+    let mode="mine";
+    const mine=()=>IT.map(r=>({id:r.id,n:r.n,x:+$("#x-"+r.id).value,y:+$("#y-"+r.id).value})).filter(r=>r.x&&r.y);
+    const offsets=n=>n<=1?[[0,0]]:n===2?[[-12,0],[12,0]]:n<=4?[[-12,-11],[12,-11],[-12,11],[12,11]]:[[-15,-11],[0,-11],[15,-11],[-15,11],[0,11],[15,11]];
+    function plot(list){
+      while(dots.firstChild)dots.removeChild(dots.firstChild);
+      const cells={};list.forEach(r=>{const k=r.x+"-"+r.y;(cells[k]=cells[k]||[]).push(r);});
+      Object.values(cells).forEach(arr=>{const off=offsets(arr.length),big=arr.length===1,rad=big?14:arr.length<=4?10:8;
+        arr.forEach((r,j)=>{const cx=ox+(r.x-.5)*C+off[j][0],cy=oy+(5-r.y+.5)*C+off[j][1];
+          const g=svgEl("g",{tabindex:"0","data-tip":`${r.id} · ${r.n}: ${xn} ${r.x}, ${yn} ${r.y}, score ${r.x*r.y}`});
+          g.appendChild(svgEl("circle",{cx,cy,r:rad+2,fill:"var(--surface)"}));
+          g.appendChild(svgEl("circle",{cx,cy,r:rad,fill:"var(--dot)"}));
+          const t=svgEl("text",{x:cx,y:cy+(big?4:3),"text-anchor":"middle","font-size":big?"11":"8.5","font-weight":"600",fill:"var(--dot-ink)"});t.textContent=r.id;g.appendChild(t);
+          dots.appendChild(g);});});
+      hs.setAttribute("aria-label",`Heat map of ${xn} by ${yn}, ${mode==="team"?"team's scores":"your scores"}. `+(list.length?list.map(r=>`${r.id}: ${xn} ${r.x}, ${yn} ${r.y}`).join(". "):"Nothing scored yet."));
+    }
+    function render(){
+      const m=mine();
+      IT.forEach(r=>{const x=+$("#x-"+r.id).value,y=+$("#y-"+r.id).value;$("#s-"+r.id).textContent=x&&y?"= "+x*y:"–";});
+      const top=$("#mytop");
+      if(!m.length)top.textContent=`Score all ${IT.length} to see your top three.`;
+      else if(m.length<IT.length)top.textContent=`Scored ${m.length} of ${IT.length}. Score all ${IT.length} to see your top three.`;
+      else top.textContent="Your top three by score: "+[...m].sort(rank).slice(0,3).map(r=>`${r.id} (${r.x*r.y})`).join(", ")+".";
+      const note=$("#mapnote");
+      if(mode==="team"){plot(IT);note.textContent="Showing the team's scores. Switch back to compare with yours.";}
+      else{plot(m);note.textContent=m.length?"Showing your scores. Shared cells show dots side by side.":"Your dots appear here as you score each one.";}
+    }
+    function setMode(v){mode=v;$("#mMine").setAttribute("aria-pressed",String(v==="mine"));$("#mTeam").setAttribute("aria-pressed",String(v==="team"));render();}
+    $("#scorer").addEventListener("change",()=>{if(mode!=="mine")setMode("mine");else render();});
+    $("#mMine").addEventListener("click",()=>setMode("mine"));
+    $("#mTeam").addEventListener("click",()=>{if(!$("#mTeam").disabled)setMode("team");});
+    $("#rv-prio").addEventListener("click",()=>{$("#mTeam").disabled=false;setMode($("#a-prio").hidden?"mine":"team");});
+    render();
+  }
+
+  const PAGEKEY="coastline";
+  const fm=v=>"$"+(v%1?v.toFixed(1):v)+"M";
+  /* Exhibit 1: QoE bridge */
+  waterfall($("#hb1"),[
+    {n:"Reported EBITDA",d:"As management reports it",total:30},
+    {n:"Gain on selling old equipment",d:"One-time: remove it",delta:-1.5},
+    {n:"Bonuses never accrued",d:"Missing yearly cost: add it",delta:-1},
+    {n:"Market rent for the family's building",d:"Non-market terms: fix them",delta:-1},
+    {n:"Legal fees for a settled lawsuit",d:"One-time cost: add it back",delta:.5},
+    {n:"Adjusted EBITDA",d:"Real, repeatable earnings",total:27},
+  ],{max:40,ticks:[0,10,20,30,40],tick:v=>"$"+v+"M",fmt:fm});
+
+  /* Exhibit 2: monthly working capital */
+  const Q=["J","F","M","A","M","J","J","A","S","O","N","D"];
+  const SER=[
+    {k:"Net working capital",v:[19,20,21,20,19,20,21,22,21,20,18,16],f:v=>"$"+v+"M"},
+    {k:"Monthly revenue",v:[10,10,11,10,10,10,11,11,10,10,10,10],f:v=>"$"+v+"M"},
+    {k:"Days to collect from customers (DSO)",v:[50,50,51,50,49,50,51,52,51,50,45,40]},
+    {k:"Days to pay suppliers (DPO)",v:[40,40,39,40,41,40,39,38,39,40,48,55]},
+    {k:"Days of inventory",v:[45,45,46,45,44,45,46,46,45,45,45,45]},
+    {k:"Cash balance",v:[2,2,2,2,2,2,2,2,2,3,4,5],f:v=>"$"+v+"M"},
+  ];
+  multiples($("#mult"),Q,SER);multTable($("#t-ex2"),["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],SER);
+
+  /* Price bridge */
+  waterfall($("#siz"),[
+    {n:"Headline enterprise value",d:"$30M × 8",total:240},
+    {n:"Earnings adjustments",d:"$3M less EBITDA × 8",delta:-24},
+    {n:"Net debt",d:"$40M loan − $5M cash",delta:-35},
+    {n:"Debt-like items",d:"Bonuses, equipment, deposits, taxes",delta:-8},
+    {n:"Working capital shortfall",d:"$20M peg − $16M at closing",delta:-4},
+    {n:"Equity price",d:"What Halvorsen pays for the shares",total:169},
+  ],{max:300,ticks:[0,100,200,300],tick:v=>"$"+v+"M",fmt:fm});
+
+  /* Calculator */
+  const PB=["ebitda","mult","debt","dli","peg","close"],PBD={ebitda:27,mult:8,debt:35,dli:8,peg:20,close:16};
+  function pbCalc(){const g=k=>{const v=parseFloat($("#pb-"+k).value);return isNaN(v)?0:v;};
+    const ev=g("ebitda")*g("mult"),adj=g("close")-g("peg"),eq=ev-g("debt")-g("dli")+adj;
+    $("#pb-ev").textContent=fm(Math.round(ev*10)/10);$("#pb-adj").textContent=(adj<0?"−":"+")+fm(Math.abs(adj));$("#pb-eq").textContent=fm(Math.round(eq*10)/10);
+    const gap=205-eq;$("#pb-note").textContent=Math.abs(gap)<0.05?"That matches the seller's $205M.":`That's ${fm(Math.abs(Math.round(gap*10)/10))} ${gap>0?"below":"above"} the seller's $205M.`;}
+  PB.forEach(k=>$("#pb-"+k).addEventListener("input",pbCalc));
+  $("#pb-reset").addEventListener("click",()=>{PB.forEach(k=>$("#pb-"+k).value=PBD[k]);pbCalc();});
+  pbCalc();
+
+  /* Risk scorer */
+  heatScorer({xName:"Likelihood",yName:"Impact",xs:"L",ys:"I",lx:["Rare","","Possible","","Likely"],ly:["Minor","","Moderate","","Severe"],items:[
+    {id:"R1",n:"Top customer (25% of sales) doesn't renew next year",x:3,y:5,w:"A quarter of sales at risk. Protect with a closing condition or a holdback."},
+    {id:"R2",n:"Working capital run down before closing",x:5,y:3,w:"Already happening, worth about $4M. Protect with a $20M peg and a true-up."},
+    {id:"R3",n:"More unrecorded liabilities, like bonuses and taxes",x:4,y:3,w:"Bonuses were never accrued, so other gaps are likely. Protect with a seller indemnity."},
+    {id:"R4",n:"Equipment needs more replacement than planned",x:3,y:3,w:"$3M is already in the price as a debt-like item. Confirm with an engineering review."},
+    {id:"R5",n:"Resin prices swing and squeeze margins",x:3,y:2,w:"A normal business risk, not a deal issue."},
+    {id:"R6",n:"Rent rises when the family's lease is renewed",x:5,y:1,w:"Already handled: EBITDA uses market rent."},
+  ]});
+
+  const TEST=[
+    {q:"What two questions does buy-side financial due diligence answer here?",o:["Are the earnings real, and what should the buyer pay for the shares?","Should the company go public, and when?","Who should run the company, and how much should they earn?","Which customers to drop, and why?"],a:0,w:"Every finding ends in a price change or a protection in the purchase agreement."},
+    {q:"Why remove a gain on selling old equipment from EBITDA?",o:["It's one-time and won't repeat","It's illegal","It's too small to matter","Buyers don't like equipment"],a:0,w:"Buyers pay a multiple of repeatable earnings, so one-time items come out."},
+    {q:"Bonuses were paid in cash but never accrued. What does that do to adjusted EBITDA?",o:["Lowers it, because a real yearly cost was missing","Raises it","No effect","Only affects taxes"],a:0,w:"A full year of bonus cost goes in, cutting EBITDA by $1M."},
+    {q:"The owner's family charges below-market rent. What's the adjustment?",o:["Charge market rent, which lowers EBITDA","Remove rent entirely","Raise EBITDA by the rent","Nothing, it's family"],a:0,w:"A new owner won't get the family discount, so EBITDA should reflect market terms."},
+    {q:"EBITDA falls by $3M at an 8× multiple. How much does the price fall?",o:["$3M","$11M","$24M","$38M"],a:2,w:"$3M × 8 = $24M. That's why earnings drive most of the gap."},
+    {q:"Equity value equals…",o:["Enterprise value − net debt − debt-like items ± working capital adjustment","Enterprise value + net debt","EBITDA × multiple","Revenue − costs"],a:0,w:"Enterprise value is the whole business; equity value is what the shares are worth."},
+    {q:"A working capital peg is…",o:["The normal level of working capital the seller must leave at closing","The interest rate on the loan","The price per share","A type of tax"],a:0,w:"Any shortfall below the peg comes off the price, usually trued up after closing."},
+    {q:"Just before closing, DSO fell and DPO rose. What happened?",o:["The seller pulled in cash, and the buyer will have to refill working capital","The business improved","Customers stopped paying","Suppliers went bankrupt"],a:0,w:"Faster collections and slower payments raise cash, which the seller keeps in a cash-free deal."},
+    {q:"Which of these is a debt-like item?",o:["Unpaid bonuses for last year","Monthly revenue","Inventory","Next year's rent"],a:0,w:"It's an obligation from before closing that the buyer would pay in cash."},
+    {q:"What equity price does diligence support in this case?",o:["$205M","$216M","$181M","$169M"],a:3,w:"$216M − $35M − $8M − $4M = $169M."},
+    {q:"Each $1M of debt-like items reduces the equity price by…",o:["$1M","$8M","$0","$35M"],a:0,w:"Debt-like items come off dollar for dollar. Only EBITDA changes get multiplied."},
+    {q:"Which is the strongest opening line for your recommendation?",o:["Let me walk you through all of our findings.","The deal has some issues.","It depends on Halvorsen's appetite.","Halvorsen should pay about $169M for the shares, not $205M."],a:3,w:"Lead with the number, then the three reasons."},
+  ];
+  const testq=$("#testq");
+  TEST.forEach((t,n)=>{const d=document.createElement("div");d.className="mc";d.dataset.answer=t.a;d.dataset.group="test";
+    d.innerHTML=`<div class="mc-head"><p class="stem" data-say="Question ${n+1}. ${t.q.replace(/"/g,"&quot;")}"><span class="qn">Q${n+1}</span>${t.q}</p><button class="btn small qlisten" type="button" aria-label="Listen to question ${n+1}">Listen</button></div>
+      <div class="opts">${t.o.map(o=>`<button class="opt" type="button" data-say="${o.replace(/"/g,"&quot;")}">${o}</button>`).join("")}</div>
+      <div class="why" hidden><p data-say="${t.w.replace(/"/g,"&quot;")}">${t.w}</p></div>`;
+    testq.appendChild(d);});
+
+  /* ---------- multiple choice engine ---------- */
+  function setupMC(mc){const opts=$$(".opt",mc);
+    opts.forEach((o,i)=>{if(!o.querySelector(".L")){const x=document.createElement("span");x.className="x";while(o.firstChild)x.appendChild(o.firstChild);
+        const L=document.createElement("span");L.className="L";L.textContent=LET[i];o.append(L,x);
+        o.dataset.say=LET[i]+". "+(o.dataset.say||x.textContent);}
+      o.addEventListener("click",()=>answer(mc,i));});}
+  function answer(mc,i){if(mc.dataset.done)return;mc.dataset.done="1";const a=+mc.dataset.answer,opts=$$(".opt",mc);
+    opts.forEach((o,k)=>{o.disabled=true;if(k===a){o.classList.add("right");o.insertAdjacentHTML("beforeend",`<span class="tag">✓ ${k===i?"Correct":"Answer"}</span>`);}
+      else if(k===i){o.classList.add("wrong");o.insertAdjacentHTML("beforeend",`<span class="tag">✕ Your pick</span>`);}});
+    mc.dataset.correct=String(i===a);$(".why",mc).hidden=false;if(mc.dataset.group==="test")score();}
+  function resetMC(mc){delete mc.dataset.done;delete mc.dataset.correct;$$(".opt",mc).forEach(o=>{o.disabled=false;o.classList.remove("right","wrong");const t=$(".tag",o);if(t)t.remove();});$(".why",mc).hidden=true;}
+  $$(".mc").forEach(setupMC);
+  function score(){const qs=$$('.mc[data-group="test"]'),done=qs.filter(q=>q.dataset.done),right=done.filter(q=>q.dataset.correct==="true").length;
+    $("#score").innerHTML=`${right} / ${done.length}<small>answered ${done.length} of ${qs.length}</small>`;
+    const box=$("#done");if(done.length===qs.length){box.hidden=false;
+      box.innerHTML=`<b>${right} of ${qs.length}.</b> `+(right>=11?"You're ready. Run the recommendation in step 09 out loud once more and get some sleep.":right>=8?"Solid. Re-read the explanations you missed, then run steps 04 and 09 out loud.":"Go back to the primer in step 01, then retake the test. The terms will stick on the second pass.");}
+    else box.hidden=true;}
+  $("#resetTest").addEventListener("click",()=>{$$('.mc[data-group="test"]').forEach(resetMC);score();$("#test").scrollIntoView();});
+  score();
+
+  /* ---------- read aloud, with a voice menu ---------- */
+  const synth=window.speechSynthesis,rateSel=$("#rate"),vSel=$("#voicePick");
+  try{const r=localStorage.getItem(PAGEKEY+"-rate");if(r)rateSel.value=r;}catch(e){}
+  rateSel.addEventListener("change",()=>{try{localStorage.setItem(PAGEKEY+"-rate",rateSel.value);}catch(e){}});
+  let speakingBtn=null,voice=null,voices=[];
+  const vrank=v=>(/natural|neural/i.test(v.name)?0:/premium/i.test(v.name)?1:/enhanced/i.test(v.name)?2:/google/i.test(v.name)?3:4)+(/^en[-_]US/i.test(v.lang)?0:.5);
+  function loadVoices(){
+    if(!synth)return;
+    voices=synth.getVoices().filter(v=>/^en/i.test(v.lang)).sort((a,b)=>vrank(a)-vrank(b)||a.name.localeCompare(b.name));
+    if(!vSel)return;
+    let saved=null;try{saved=localStorage.getItem(PAGEKEY+"-voice");}catch(e){}
+    vSel.innerHTML=voices.length?voices.map((v,i)=>`<option value="${i}">${v.name.replace(/[<>&"]/g,"")}${vrank(v)<2?" (natural)":""}</option>`).join(""):'<option value="">Browser default</option>';
+    let idx=voices.findIndex(v=>v.name===saved);if(idx<0)idx=0;
+    if(voices.length)vSel.value=String(idx);voice=voices[idx]||null;
+  }
+  if(vSel)vSel.addEventListener("change",()=>{voice=voices[+vSel.value]||null;try{localStorage.setItem(PAGEKEY+"-voice",voice?voice.name:"");}catch(e){}});
+  loadVoices();
+  if(synth&&"onvoiceschanged" in synth)synth.addEventListener("voiceschanged",loadVoices);
+  function textOf(el){return(el.getAttribute("data-say")||el.innerText||"").replace(/\s+/g," ").trim();}
+  function visible(el){return!!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+  function stop(){if(synth)synth.cancel();if(speakingBtn){speakingBtn.textContent=speakingBtn.dataset.label;speakingBtn.setAttribute("aria-pressed","false");speakingBtn=null;}}
+  function speakChunks(btn,chunks){
+    if(!synth||!chunks.length)return;
+    if(speakingBtn===btn){stop();return;}
+    stop();
+    speakingBtn=btn;btn.dataset.label=btn.dataset.label||btn.textContent;btn.textContent="Stop";btn.setAttribute("aria-pressed","true");
+    chunks.forEach((c,i)=>{const u=new SpeechSynthesisUtterance(c);u.rate=+rateSel.value;if(voice){u.voice=voice;u.lang=voice.lang;}else u.lang="en-US";
+      if(i===chunks.length-1)u.onend=()=>{if(speakingBtn===btn)stop();};synth.speak(u);});
+  }
+  function speak(btn,els){const chunks=[];els.filter(visible).forEach(el=>{textOf(el).split(/(?<=[.?!])\s+(?=[A-Z0-9"“])/).forEach(c=>{if(c)chunks.push(c);});});speakChunks(btn,chunks);}
+  if(!synth){$$(".listen,.qlisten").forEach(b=>b.hidden=true);$(".speed").hidden=true;const vb=$(".voicebar");if(vb)vb.hidden=true;}
+  else{
+    $$(".listen").forEach(b=>{b.dataset.label=b.textContent;b.addEventListener("click",()=>{const sec=b.closest("section");speak(b,$$("[data-say]",sec).filter(el=>!el.parentElement.closest("[data-say]")));});});
+    document.addEventListener("click",e=>{const b=e.target.closest(".qlisten");if(!b)return;const mc=b.closest(".mc");speak(b,$$("[data-say]",mc).filter(el=>!el.parentElement.closest("[data-say]")));});
+    const vt=$("#voiceTest");if(vt){vt.dataset.label=vt.textContent;vt.addEventListener("click",()=>speakChunks(vt,["Hi. This is how I'll read your case.","Pick another voice if this one sounds robotic."]));}
+  }
+  /* ---------- rail highlight ---------- */
+  const chips=$$("#chips a"),map=new Map(chips.map(a=>[a.getAttribute("href").slice(1),a]));
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){chips.forEach(c=>c.classList.remove("on"));const a=map.get(en.target.id);if(a){a.classList.add("on");const p=a.parentElement;p.scrollTo({left:a.offsetLeft-p.clientWidth/2+a.offsetWidth/2,behavior:"smooth"});}}});},{rootMargin:"-45% 0px -50% 0px"});
+    $$("section.step").forEach(s=>io.observe(s));
+  }
+})();
+</script>
+<script src="tts.js"></script>
+<script src="chat.js"></script>
+</body></html>

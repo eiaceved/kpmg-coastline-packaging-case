@@ -1,0 +1,606 @@
+[
+ {
+  "hash": "399b5fc5bdc361c57fb01be5be1d65ecee6fbc59",
+  "text": "How a KPMG Deal Advisory case works"
+ },
+ {
+  "hash": "5384f026471da2c8a24e36955263294eeea66d1c",
+  "text": "KPMG Deal Advisory helps buyers and sellers on transactions. Financial due diligence is a core part of it: checking a target's earnings, working capital, and debts so the buyer knows what it's really paying for."
+ },
+ {
+  "hash": "3bfdce248ebf56133354ac728b8004262bb54e43",
+  "text": "Put simply, the question is always \"are the numbers real, and what does that mean for the price?\" Formats vary by office and team, so confirm the details with your recruiter."
+ },
+ {
+  "hash": "ac45ee4a4a8219078ab0683b89da5c17c02630db",
+  "text": "How the interview runs"
+ },
+ {
+  "hash": "11463c67743e280bc8d9b9fe6b29ca486c02ff2a",
+  "text": "BASED ON PUBLIC PREP GUIDES"
+ },
+ {
+  "hash": "b17d5e07deca5a0a9c5f3c887ccafe27d71b4a16",
+  "text": "Cases are usually candidate-led: you set the structure and ask for data."
+ },
+ {
+  "hash": "b90ce47f42a159064fa8c95d96c6c902fb5c2a54",
+  "text": "First round: often a case interview and a behavioral interview of about 30 minutes each. Some offices add an online test."
+ },
+ {
+  "hash": "97be2bd597b556d3db155c12f19c1b15db540bbd",
+  "text": "Later rounds can include a written case: a packet of charts and tables you turn into a short presentation."
+ },
+ {
+  "hash": "d5fca2c006b18a763560708413a140098af5973c",
+  "text": "Behavioral questions weigh heavily, tied to KPMG's values: Integrity, Excellence, Courage, Together, and For Better."
+ },
+ {
+  "hash": "88fcf597cbdb900d0205c868c62b08c6f134dbc8",
+  "text": "What due diligence teams do"
+ },
+ {
+  "hash": "02e9f3d99c87631c67aa9d11a0c61f4de5973abb",
+  "text": "FROM KPMG'S JOB POSTINGS, IN SHORT"
+ },
+ {
+  "hash": "857b69edab248df761f692bb3cf90b6efeb6edc9",
+  "text": "Work on buy-side and sell-side deals for large companies and private equity firms."
+ },
+ {
+  "hash": "14389e8680f0350e5ae6293462754f7c14c16745",
+  "text": "Analyze a target's financial trends and quality of earnings."
+ },
+ {
+  "hash": "40a0f2f5f288c11b6f48a522820f96bfe6ed2ddb",
+  "text": "Review working capital, debt, and other obligations that act like debt."
+ },
+ {
+  "hash": "7c392c42ecc654e186bd7bb9c04a433f476fb2d8",
+  "text": "Write client reports that feed into the price and the purchase agreement."
+ },
+ {
+  "hash": "5cfb326c4b87eddd583b2eaa7fd4a3fcdec129f0",
+  "text": "THE DUE DILIGENCE PATH IN THIS CASE"
+ },
+ {
+  "hash": "467204cba9de926efca8b7303d58cd87fdbfbf82",
+  "text": "EarningsIs EBITDA real and repeatable?"
+ },
+ {
+  "hash": "aa2338f0b22392dcb1bdaf1d52632327e7192226",
+  "text": "Working capitalWhat's a normal level?"
+ },
+ {
+  "hash": "842a4c052dde8a03639965850627132e5865e534",
+  "text": "DebtWhat else does the buyer inherit?"
+ },
+ {
+  "hash": "cea17d1a282c5a446bd5da37b47b2a0039c40c13",
+  "text": "PriceWhat should the shares cost?"
+ },
+ {
+  "hash": "536cc3a238e0be92d8ff68d36b5088abd9a31e01",
+  "text": "Each finding moves the price, so every step ends in dollars"
+ },
+ {
+  "hash": "180328a92268887db4921adaac86d08af33c5103",
+  "text": "TEN TERMS TO DROP NATURALLY"
+ },
+ {
+  "hash": "5b80e6b18ea7afc4f6d6d334fce5173fb4ed0bd5",
+  "text": "Earnings before interest, taxes, depreciation, and amortization. Roughly, cash profit from operations. Deals are usually priced as a multiple of it."
+ },
+ {
+  "hash": "2f9d7ee38b168250f2486dcc38682af9d137628f",
+  "text": "A review of whether reported earnings are real and repeatable. It ends with an adjusted EBITDA the buyer can trust."
+ },
+ {
+  "hash": "02f8898766afb6199cc0836e309b0452572d7472",
+  "text": "A change that removes one-time items or fixes non-market terms, so EBITDA shows a normal year."
+ },
+ {
+  "hash": "54f5d1ae84fd8705c3dc5c3578f91d64e8b6f459",
+  "text": "Short-term operating assets minus short-term operating liabilities: mainly receivables plus inventory, minus payables."
+ },
+ {
+  "hash": "c00353fded8ab468ddff6ecf5c528ae339870c5f",
+  "text": "The normal level of working capital the seller must leave in the business at closing. Any shortfall comes off the price."
+ },
+ {
+  "hash": "ed685d57e1444637efd85cb8fe2a2cd8849b5724",
+  "text": "Obligations that aren't loans but will cost the buyer cash, like unpaid bonuses or overdue equipment spending."
+ },
+ {
+  "hash": "9142cc96c38695ebe3aee02735fa5e9865d2c615",
+  "text": "What the whole business is worth, before considering debt and cash. Usually EBITDA times a multiple."
+ },
+ {
+  "hash": "f767828ac44c8fc587801b6aa9d345de2f661b32",
+  "text": "What the shares are worth: enterprise value minus net debt, minus debt-like items, plus or minus working capital adjustments."
+ },
+ {
+  "hash": "3597523e53e0a8851ba2aa5b0e4335dfd2139041",
+  "text": "A deal where the seller keeps the cash and pays off the debt, so the price is adjusted for both at closing."
+ },
+ {
+  "hash": "5f28c700ddff0a44e37374eef342a17a6827a5d9",
+  "text": "The contract for the deal. Due diligence findings turn into price changes, protections, and promises in it."
+ },
+ {
+  "hash": "5897d588b37d475d6785a1e68e72448746fd0b14",
+  "text": "The case prompt"
+ },
+ {
+  "hash": "2bea13779f71b068910e9a84f9544399623b1804",
+  "text": "INTERVIEWER"
+ },
+ {
+  "hash": "bb488e6e87ac61e3d33dbf1bb2206ef0540a7a60",
+  "text": "Our client is Halvorsen Capital, a private equity firm. It has agreed in principle to buy Coastline Packaging, a family-owned maker of food packaging, on a cash-free, debt-free basis."
+ },
+ {
+  "hash": "0dcd5dbc273aea0d3f28eb310d050737517c62c5",
+  "text": "The headline price is 240 million dollars, which is 8 times the 30 million dollars of EBITDA that Coastline's management reported for the last 12 months. Coastline has 35 million dollars of net debt."
+ },
+ {
+  "hash": "38d5e9d86f524d5e77ffa9e8dee1f09fb35f4c86",
+  "text": "Halvorsen has hired us for buy-side financial due diligence. Are Coastline's earnings real, and how much should Halvorsen actually pay for the shares?"
+ },
+ {
+  "hash": "074070c1d028b9146324af0f2ee84d7495a570bc",
+  "text": "Restate the question in one sentence, then say what you'd like to clarify."
+ },
+ {
+  "hash": "d525548f59ac31a46e24c3ebba751cc603d607d7",
+  "text": "STRONG ANSWER"
+ },
+ {
+  "hash": "4f2e64eef73ce3066d2ed09c95fec4811615f238",
+  "text": "\"So Halvorsen wants to know whether Coastline's 30 million of EBITDA is real and repeatable, and what the equity price should be once we adjust for earnings, debt, and working capital. Is that right?\""
+ },
+ {
+  "hash": "68f4e0ba80501c39517c3e28d9dc2d12333927da",
+  "text": "Interviewer: \"Exactly.\" Notice the restatement says \"equity price,\" not just \"price.\" The headline 240 million isn't what Halvorsen pays for the shares."
+ },
+ {
+  "hash": "8e6d2ad9575dc9f3cfc886c2260b8fefc6fde36e",
+  "text": "Clarifying questions"
+ },
+ {
+  "hash": "cf40a0f2f5aaee7152d7c02c95d4ee459e4dc68e",
+  "text": "Ask two or three clarifying questions. Pick ones whose answers would change your approach."
+ },
+ {
+  "hash": "07bb13454b4ad758e463dec0fb29157e3a669fd3",
+  "text": "STRONG QUESTIONS, WITH THE INTERVIEWER'S ANSWERS"
+ },
+ {
+  "hash": "c7f172196042e30ed444cbe7f0ffcb4211a4be4b",
+  "text": "Who prepared the 30 million, and has it been checked? Management prepared it from the books. Coastline's annual statements are audited by a regional firm, but nobody has reviewed this EBITDA number for a sale."
+ },
+ {
+  "hash": "ac041a10f3960268dca3c5cbf4c721fb4e6fa0c9",
+  "text": "What does the buyer need from us, and by when? An adjusted EBITDA, a working capital peg, a list of debt-like items, and the resulting equity price, in four weeks before signing."
+ },
+ {
+  "hash": "06f2396ceb2abcfd36d711e420a59d3ce26225f3",
+  "text": "Are there any related-party arrangements? Yes. The owner's family owns the building Coastline's main plant uses, and charges below-market rent."
+ },
+ {
+  "hash": "625a0549170509749db74e9b8ca7adb175ff70bb",
+  "text": "When does the deal close? Right after Coastline's year-end."
+ },
+ {
+  "hash": "cd7dec5098ce26452758ff0df2449d72cb640cbb",
+  "text": "How concentrated are the customers? The largest customer, a snack maker, is about 25 percent of sales. Its contract renews next year."
+ },
+ {
+  "hash": "add331618c2c78db7f63a5ca3dde2ad0a17a643a",
+  "text": "The related-party rent and the year-end timing both turn out to matter. Diligence teams always ask about related parties and anything unusual near closing."
+ },
+ {
+  "hash": "5c1d378cfc64d50c7f119b2c2db5a1f3712a570a",
+  "text": "Build the framework"
+ },
+ {
+  "hash": "e008c09f025334c4293faa94ffb126469292b8e4",
+  "text": "How would you structure the due diligence?"
+ },
+ {
+  "hash": "567790e1ac0a2498394f45f0c88e0022c8453f7c",
+  "text": "Take 60 seconds. Think about every piece that sits between the headline price and what Halvorsen pays for the shares."
+ },
+ {
+  "hash": "7945cefa89a1794e79a31316c3ed524225b41a5a",
+  "text": "STRONG FRAMEWORK"
+ },
+ {
+  "hash": "9f78d6073b52d8a6d3f84d2acda3bd22b297e21e",
+  "text": "One-time gains and costs"
+ },
+ {
+  "hash": "671b642ef4b1cc6bedd22416b761da0e329d1bae",
+  "text": "Missing costs, like accruals"
+ },
+ {
+  "hash": "7a179893827ae1ba043f03ef94023f604fcb8763",
+  "text": "Non-market terms, like rent"
+ },
+ {
+  "hash": "e26d981fd3591061c1a0a616428dc5bf6064f8e3",
+  "text": "Normal level over 12 months"
+ },
+ {
+  "hash": "49ef19b942ea47c9e72ba16bcce3a83f1e7f0aa9",
+  "text": "Level expected at closing"
+ },
+ {
+  "hash": "601c90d48af7176e03476c1653f6af78fb8fbb2d",
+  "text": "Any unusual swings"
+ },
+ {
+  "hash": "4be7ad0397457a20caf4a1e0fdd5fdd3da69d74b",
+  "text": "Loans and cash"
+ },
+ {
+  "hash": "b0412336dfbd45b79c2e1e0c6cee3ffa77813a1e",
+  "text": "Unpaid bonuses, taxes"
+ },
+ {
+  "hash": "c48e1df630ad36ec975e145395b7d4b068792bed",
+  "text": "Overdue equipment spending"
+ },
+ {
+  "hash": "a0fb3659e09f73f296cdbb11fc05111847f03cf5",
+  "text": "Customer concentration"
+ },
+ {
+  "hash": "33890d983893a844be2560672e531323703c4191",
+  "text": "Contracts and renewals"
+ },
+ {
+  "hash": "39876f763a3e05b08b65424ffff65a935406e335",
+  "text": "What goes in the agreement"
+ },
+ {
+  "hash": "891f8b94c7459a349db8c3dbeedf17e43b709565",
+  "text": "Say it like this"
+ },
+ {
+  "hash": "b998cffecf793e65d8660f413ddae5d57a3ae984",
+  "text": "\"I'd follow the price from the headline down to the shares. First, quality of earnings: is the 30 million real, after taking out one-time items, adding missing costs, and fixing non-market terms like the family's rent? That sets the enterprise value. Second, working capital: what's a normal level, and will the seller deliver it at closing? Third, net debt and debt-like items: what else will cost Halvorsen cash after closing? Fourth, other risks, like the big customer, and how to protect against them in the purchase agreement. Given the below-market rent, my hypothesis is that EBITDA is overstated, so I'd start with the earnings.\""
+ },
+ {
+  "hash": "2e4580536b0f2359910adb76e50ba348f206ca0a",
+  "text": "Why it works"
+ },
+ {
+  "hash": "3cde9db3a7b761a8384004fd583e3ae00357c0a8",
+  "text": "It follows the money: enterprise value, then everything between it and the equity price."
+ },
+ {
+  "hash": "648e00f23de06bd2d747f24e4052c12dd00e5818",
+  "text": "Each bucket ends in dollars, which is what the buyer needs."
+ },
+ {
+  "hash": "10579ae2bffcccb4fd350213450c35ed18da6af2",
+  "text": "It uses a clue from the clarifying questions to form a hypothesis."
+ },
+ {
+  "hash": "8361d0615cb35548de437e05b61b6875d73fb348",
+  "text": "If you blank, \"earnings, working capital, debt, risks\" covers almost any financial due diligence case."
+ },
+ {
+  "hash": "9f7d2b1f52555b5e5aaaba2906bfd9bfd28f06e9",
+  "text": "Exhibit 1: quality of earnings"
+ },
+ {
+  "hash": "d6f83feccd896faab2551024384808cbc85bd0ae",
+  "text": "Our team reviewed the books. Here's the bridge from management's EBITDA to our adjusted EBITDA. Walk me through it."
+ },
+ {
+  "hash": "fc71414aecb5fcbfc5471cf93a937158a876e48b",
+  "text": "Last 12 months. Gray bars are totals; blue adds to EBITDA; orange takes away."
+ },
+ {
+  "hash": "ada37c004f57cb53425822a89c0c93e2c71cfb2d",
+  "text": "Source: diligence team review (case data)."
+ },
+ {
+  "hash": "48552dc5f7e45e10ab4e35f5a1e6881926a7cbbd",
+  "text": "What's the so-what?"
+ },
+ {
+  "hash": "6b26783aa67f61947dfbe6422c708772e3946808",
+  "text": "Three items lower EBITDA. The gain on selling old equipment is one-time, so it comes out. Bonuses were paid in cash but never accrued, so a full year of cost was missing. And the family charges below-market rent, which a new owner won't get, so market rent goes in. One item raises EBITDA: one-time legal fees for a settled lawsuit get added back. Net, EBITDA drops 3 million, and every million of EBITDA is worth 8 million of price."
+ },
+ {
+  "hash": "bd8c081f9387f2f5ad6584fecd46dba84eaeacdd",
+  "text": "Say the insight and its effect on price, then ask for your next piece of data."
+ },
+ {
+  "hash": "9081300dd752cc7160c72ad471729f81d2ade2ff",
+  "text": "SAY IT LIKE THIS"
+ },
+ {
+  "hash": "3df2b8161bc6a941447a1fd6cf65aabc05b9b781",
+  "text": "\"Repeatable EBITDA is about 27 million, not 30. We remove a one-time gain, add a full year of bonus cost that wasn't accrued, and charge market rent for the family's building, then add back one-time legal fees. At 8 times, that's an enterprise value of about 216 million instead of 240. Next I'd like to look at working capital, especially around closing.\""
+ },
+ {
+  "hash": "a5d396cc6d81c6f7a760987aa4f56a6007518109",
+  "text": "Notice the logic for each adjustment: one-time, missing, or not at market terms. That's how diligence teams explain them."
+ },
+ {
+  "hash": "3d682536dcf4420072cdd5867e19410574251eb1",
+  "text": "Exhibit 2: working capital, month by month"
+ },
+ {
+  "hash": "8cfb42df93512e9c35f2e5c1924466a24e41f148",
+  "text": "Here's Coastline's working capital for the last 12 months, plus a few drivers. The deal closes right after December. What do you see?"
+ },
+ {
+  "hash": "0f5202151b26a29125e74f893452fc5d2029df73",
+  "text": "Month-end figures. Each panel has its own scale, starting at zero."
+ },
+ {
+  "hash": "4c167df238d7a056c60176c95d8c9a6be1cf0575",
+  "text": "Days sales outstanding (DSO) is how long customers take to pay. Days payable outstanding (DPO) is how long Coastline takes to pay suppliers. Source: Coastline monthly accounts (case data)."
+ },
+ {
+  "hash": "a4807a356de1992cb1ec31d6928b32ee3e63c9f3",
+  "text": "Sales were flat, and inventory days held steady. But in the last two months, customers were pushed to pay faster, with DSO falling from about 50 days to 40, and suppliers were paid slower, with DPO rising from about 40 to 55. That pulled about 4 million of cash into the business, which the seller keeps in a cash-free deal. After closing, suppliers still need paying and collections go back to normal, so Halvorsen would have to fund that 4 million. The fix is a working capital peg at the normal level of about 20 million."
+ },
+ {
+  "hash": "080dd76c3dffdba5a2135e703f335073bf9d39db",
+  "text": "Synthesize both exhibits in three sentences."
+ },
+ {
+  "hash": "655e39f421a4ab5e860196cbb0744a35f842814f",
+  "text": "\"Repeatable EBITDA is about 27 million, which puts enterprise value at about 216 million. Working capital has averaged about 20 million, but it's heading into closing at about 16 million because the seller sped up collections and slowed payments, so the price should assume a peg of 20 million and take off the 4 million shortfall. Next I'd look for debt-like items, things that will cost Halvorsen cash after closing.\""
+ },
+ {
+  "hash": "babb178d285a2913834d1998ce7192c34a787a61",
+  "text": "The price bridge: enterprise value to equity value"
+ },
+ {
+  "hash": "e2490a72dbae42cf6d8ad89083394cfc83a9149c",
+  "text": "This is the core math of financial due diligence: start from enterprise value, then subtract everything the buyer inherits, to get what the shares are worth."
+ },
+ {
+  "hash": "c64fb2e4aed13e1adc3e05935275082766f5b5f3",
+  "text": "The team also found some debt-like items. Walk me from the seller's number to what Halvorsen should pay for the shares."
+ },
+ {
+  "hash": "0b43fa2ba99881c802eb03106f849bf57b07bab8",
+  "text": "Case assumptions. The seller's view is $240M of enterprise value minus $35M of net debt, or $205M for the shares."
+ },
+ {
+  "hash": "bbca50753a422c12e81918e5ef830f127e11c42c",
+  "text": "Say the formula first: equity value equals enterprise value, minus net debt, minus debt-like items, minus any working capital shortfall. Then compare with the seller's 205 million."
+ },
+ {
+  "hash": "9745eaf58c7d2281282f83c52a17da9cfd2027de",
+  "text": "1 \u00b7 The seller's view $240M \u2212 $35M net debt $205M"
+ },
+ {
+  "hash": "3fb3daec517b5d2c3aeb4ed439a9b5ed5b310af6",
+  "text": "2 \u00b7 Adjusted enterprise value $27M \u00d7 8 $216M"
+ },
+ {
+  "hash": "5482224065ced20751c7d7f2b3faca4757dc3660",
+  "text": "3 \u00b7 Minus net debt $216M \u2212 $35M $181M"
+ },
+ {
+  "hash": "c1f823da24a0a823aac3b715ed2c345e2ce2e388",
+  "text": "4 \u00b7 Minus debt-like items $2M + $3M + $2M + $1M = $8M $173M"
+ },
+ {
+  "hash": "e579dee5d1f942efff034c681131fc64317fb238",
+  "text": "5 \u00b7 Minus working capital shortfall $20M peg \u2212 $16M at closing = $4M $169M"
+ },
+ {
+  "hash": "5741e48ed29edcf80c0d8da92012dc95c0d941fe",
+  "text": "6 \u00b7 Compare $205M \u2212 $169M. $24M of the gap is earnings \u2212$36M"
+ },
+ {
+  "hash": "fa5c5ef79624a1172c626cea2b51f7230cfc1d25",
+  "text": "Every step uses numbers from the two exhibits and the diligence findings."
+ },
+ {
+  "hash": "cbc634f4e4ad1725383db42c726ca4daca6ceb55",
+  "text": "Quick check: at 8 times, how much does each 1 million of EBITDA adjustment change the price?"
+ },
+ {
+  "hash": "f36b0ec80d93d2f676e3d1030f96cfc0edd824b1",
+  "text": "Price is EBITDA times 8, so 1 million less EBITDA is 8 million less price. That's why quality of earnings drives most of the gap. A debt-like item, by contrast, comes off dollar for dollar. Everyday version: if a house is priced at 8 times its yearly rent, finding 1,000 dollars less rent knocks 8,000 off the price, but a 1,000 dollar repair bill only knocks off 1,000."
+ },
+ {
+  "hash": "3027e3126942bafd5e12d2650bcd1cc63182508a",
+  "text": "Price bridge calculator"
+ },
+ {
+  "hash": "d9ba4c8a48072dbb5d2bfb5112734ca6f34fa424",
+  "text": "Starts with the case numbers. Try a different multiple or a smaller working capital shortfall."
+ },
+ {
+  "hash": "0c9a458fca011683413e3e9cd8ed40a07377b92b",
+  "text": "Summarize the bridge in two sentences."
+ },
+ {
+  "hash": "d73c9b4a9cdbfcfc05612df9755435fe90552f7a",
+  "text": "\"On adjusted EBITDA of 27 million, enterprise value is about 216 million. After 35 million of net debt, 8 million of debt-like items, and a 4 million working capital shortfall, Halvorsen should pay about 169 million for the shares, 36 million less than the seller's 205 million, and two-thirds of that gap comes from earnings.\""
+ },
+ {
+  "hash": "39bb92d47f36b4e41d7ec1dbf2d41e434de173f5",
+  "text": "If the interviewer asks, \"The seller will never accept 8 times 27\": \"Then the debate is about the multiple, not the earnings. Even at 8.5 times, equity is about 182 million. And the debt-like items and working capital shortfall come off whatever multiple we agree on.\""
+ },
+ {
+  "hash": "4053a9882ef7cab4247e9d2e8b7898e753432a57",
+  "text": "Score the diligence findings"
+ },
+ {
+  "hash": "4697dfd0e07bc2b93ceb36befd8284c89cd3aa5e",
+  "text": "Here are the open issues from diligence. Score each for likelihood and impact. Which three should Halvorsen address in the purchase agreement?"
+ },
+ {
+  "hash": "93c6dc437f2583c961c44c6c6ef92857b735fb39",
+  "text": "Your dots appear here as you score each issue."
+ },
+ {
+  "hash": "ac0c8b91dbe4f5417af13f174c932cf546a9de50",
+  "text": "Pick L (likelihood) and I (impact): 1 is low, 5 is high."
+ },
+ {
+  "hash": "3cfced29667347a2e79b97d5dfcf7a7ae4ac4808",
+  "text": "Score all six to see your top three."
+ },
+ {
+  "hash": "5da0ae97989242af8fde88eb8a7d76cd31aed14a",
+  "text": "Score = likelihood \u00d7 impact. Issues are from the case; scores are yours to set."
+ },
+ {
+  "hash": "42a237c35595d72eec94e8cf672583073193326c",
+  "text": "Score each issue out loud with a one-line reason, then name your top three and how you'd protect against each."
+ },
+ {
+  "hash": "78ad2f061ee756222f933c1d8809b5fe279edeee",
+  "text": "THE TEAM'S SCORES, WITH REASONS"
+ },
+ {
+  "hash": "6a7438307982fd84bea6fec7d73a7f13b192e4ce",
+  "text": "\"Three protections in the purchase agreement. First, for the top customer, make the contract renewal a condition of closing, or hold back part of the price until it renews. Second, set the working capital peg at 20 million, with a true-up after closing. Third, a specific promise from the seller to cover the unpaid bonuses and taxes, called an indemnity.\""
+ },
+ {
+  "hash": "d1633b99cac46ea46cf4b9bf0118ebc911b63a56",
+  "text": "Which three come first?"
+ },
+ {
+  "hash": "88bfb5b2602c82066cd46f634d0889f02b13b25f",
+  "text": "R1 could cut a quarter of sales. R2 is already happening and costs 4 million. R3 is cash the buyer would pay after closing. R4 is already in the price as a debt-like item, R5 is a normal business risk, and R6 is already fixed by the market-rent adjustment."
+ },
+ {
+  "hash": "e384f9f7d0838bb158b1bf92f6497fe11cdb2928",
+  "text": "The recommendation"
+ },
+ {
+  "hash": "2fa7d62c62219bd9d1f48a23bebd3d2466d2e2e6",
+  "text": "The deal partner wants your bottom line in 60 seconds. What should Halvorsen do?"
+ },
+ {
+  "hash": "c8645a51603887b17ebbfc1ddff439438394a0e9",
+  "text": "Lead with the number. Then three reasons, the main risk, and next steps."
+ },
+ {
+  "hash": "95d1ee06b3e913392e2318a097936c0dc29256d6",
+  "text": "\"Halvorsen should go ahead, but at about 169 million for the shares, not the 205 million the headline implies.\""
+ },
+ {
+  "hash": "3c7de72584ec575b09bf0074a0c62573784c0e71",
+  "text": "\"First, earnings are overstated. Repeatable EBITDA is about 27 million, not 30, once we remove a one-time gain, add missing bonus costs, and charge market rent. At 8 times, that's 24 million off the price.\""
+ },
+ {
+  "hash": "c72c22b5ca481178f0c7df1699077892ca30cba3",
+  "text": "\"Second, Halvorsen inherits 8 million of debt-like items: unpaid bonuses and taxes, overdue equipment spending, and customer deposits for orders it will have to deliver.\""
+ },
+ {
+  "hash": "c06e0e24e8f102911ace4c88d37f3dd52a7a3001",
+  "text": "\"Third, working capital is being run down before closing. It's normally about 20 million, but it's heading to about 16 million, so we should set a 20 million peg and take off the shortfall.\""
+ },
+ {
+  "hash": "37258f5ebfc6691a41a2606f58be28c2b25ab3f1",
+  "text": "\"The main risk is the top customer, at 25 percent of sales with a renewal next year. Next steps: make the renewal a closing condition or hold back part of the price, get a seller indemnity for the bonuses and taxes, and confirm the equipment spending with an engineering review.\""
+ },
+ {
+  "hash": "a71a42fc97a5b67450e5853b8651123d3a08f229",
+  "text": "What goes in the purchase agreement"
+ },
+ {
+  "hash": "7b2ff4f7cea197ebeeff7f184d88528f4ec2943d",
+  "text": "Price on adjusted EBITDA of $27M."
+ },
+ {
+  "hash": "316d836d0a0bc161d5d3c66e8a838faf543d0491",
+  "text": "Deduct $8M of debt-like items."
+ },
+ {
+  "hash": "b101061e5235e803d631871ca1853e2487623d8e",
+  "text": "Working capital peg of $20M."
+ },
+ {
+  "hash": "b976a847600e89064ecf5e50381d1fc97197902e",
+  "text": "True-up after closing for any shortfall."
+ },
+ {
+  "hash": "4da95502695be99eb2308c4b9c75eb2e2d84bcb4",
+  "text": "Seller indemnity for pre-closing bonuses and taxes."
+ },
+ {
+  "hash": "23c5a1b2122b3d135595d4ec27846708fec06dc7",
+  "text": "Hold back part of the price until the top customer renews."
+ },
+ {
+  "hash": "09b473dd112ffbe5a1399324b12380c2f4d9a993",
+  "text": "Bonus drills: technical questions"
+ },
+ {
+  "hash": "b928063cf07985858e3defd1aab862f3f2d68238",
+  "text": "Deal Advisory interviews, especially for financial due diligence, can include quick accounting and deal questions. Answer each out loud in two or three sentences, then compare."
+ },
+ {
+  "hash": "f19d32b49f6eac8e8f6e1f16d5ef718b6db9f2fd",
+  "text": "1. What is EBITDA, and why do buyers use it?"
+ },
+ {
+  "hash": "80a996f15a5f9dc00d1e541a67c9e772e8b21ad9",
+  "text": "\"Earnings before interest, taxes, depreciation, and amortization. It's a rough measure of cash profit from operations that ignores how the company is financed and taxed, so buyers can compare companies and price them as a multiple.\""
+ },
+ {
+  "hash": "754b8bed169704b08da9a7a61096dec61bb41642",
+  "text": "2. What's the difference between enterprise value and equity value?"
+ },
+ {
+  "hash": "82d4e3178a6550baca6b5ef587c12a78410fc4be",
+  "text": "\"Enterprise value is what the whole business is worth to all investors. Equity value is what the shares are worth: enterprise value minus net debt and debt-like items, adjusted for working capital. Think of a house: the house is worth 500 thousand, but if there's a 300 thousand mortgage, the owner's share is 200 thousand.\""
+ },
+ {
+  "hash": "47759a92ea01d84f2145b5de7e34c720e265a443",
+  "text": "3. What is net working capital, and why does a buyer care?"
+ },
+ {
+  "hash": "c051dc5e915747f6dc33e1064fcffaff75143ae9",
+  "text": "\"It's receivables plus inventory minus payables: the cash tied up in running the business day to day. A buyer needs a normal level on day one. If the seller leaves too little, the buyer has to put in its own cash, which is why deals set a peg.\""
+ },
+ {
+  "hash": "1642687980acccf7ce539bf8278f806db2103e8b",
+  "text": "4. What makes an item \"debt-like\"?"
+ },
+ {
+  "hash": "c2dec5f7f8dc876b475e43fbebcf2be7c32e476f",
+  "text": "\"It isn't a loan, but it will cost the buyer cash because of something that happened before closing. Examples: unpaid bonuses, unpaid taxes, overdue equipment spending, or deposits for orders still to be delivered. They come off the price dollar for dollar.\""
+ },
+ {
+  "hash": "bb00b78acf3f26a0bfb61912d8811d3bc6247302",
+  "text": "5. Give three common quality of earnings adjustments."
+ },
+ {
+  "hash": "643391bae49a50d13429da9e61bf1d0c9ed07579",
+  "text": "\"Removing one-time items, like a gain on selling equipment or a lawsuit settlement. Adding costs that weren't recorded, like unaccrued bonuses. And fixing related-party terms to market rates, like rent paid to the owner's family.\""
+ },
+ {
+  "hash": "91b7228c94f1694215f2bf44a29afcb157960e91",
+  "text": "6. Revenue was booked but cash wasn't collected. Where does it show up?"
+ },
+ {
+  "hash": "fedeede457599740b4076d1d75448dbfaf4942d5",
+  "text": "\"Revenue and profit go up on the income statement, and accounts receivable goes up on the balance sheet. Cash doesn't change until the customer pays. That's why diligence teams compare EBITDA with cash flow: growing profit with flat cash can be a warning sign.\""
+ },
+ {
+  "hash": "0eda8d77e34cad93e11bc25b2cb5cd229ba79178",
+  "text": "Practice test"
+ },
+ {
+  "hash": "c9a55911ba33e5cd2d25ed88b7cf42ede86f0678",
+  "text": "Twelve multiple-choice questions on due diligence basics and the Coastline case. Pick an answer to see the explanation."
+ }
+]
